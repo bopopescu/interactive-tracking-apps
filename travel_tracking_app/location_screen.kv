@@ -1,0 +1,34 @@
+<LocationScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text:'Please select the city and facility where you had your visit.'
+            size_hint: (1, 0.75)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Location:'
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    id: Lincoln, Ne
+                    text: 'Lincoln, NE'
+                    on_press: app.open_next_screen()
+                    on_release: app.display_facilities('Lincoln, NE')
+                Button:
+                    id: Omaha, NE
+                    text: 'Omaha, NE'
+                    on_press: app.open_next_screen()
+                    on_release: app.display_facilities('Omaha, NE')
+                Button:
+                    id: Columbus, NE
+                    text: 'Columbus, NE'
+                    on_press: app.open_next_screen()
+                    on_release: app.display_facilities('Columbus, NE')
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                text: 'Back'
+                size_hint: .25, .25
+                on_press: app.open_previous_screen()
+            Widget:
