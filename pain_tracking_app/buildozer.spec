@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Travel Tracking App
+title = Pain Tracking
 
 # (str) Package name
-package.name = travel_tracking_app
+package.name = pain_tracking
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = edu.unl.cse.soft161
@@ -28,7 +28,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 1.0
+version = 1
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]

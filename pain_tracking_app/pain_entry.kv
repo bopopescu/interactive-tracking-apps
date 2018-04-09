@@ -1,0 +1,83 @@
+<PainEntryScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Pain entry'
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Head'
+            CheckBox:
+                id: head
+            Spinner:
+                id: head_severity
+                text: '1'
+                values: ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'arm'
+            CheckBox:
+                id: arm
+            Spinner:
+                id: arm_severity
+                text: '1'
+                values: ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Stomach'
+            CheckBox:
+                id: stomach
+            Spinner:
+                id: stomach_severity
+                text: '1'
+                values: ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Leg'
+            CheckBox:
+                id: leg
+            Spinner:
+                id: leg_severity
+                text: '1'
+                values: ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
+        Button:
+            text: 'Save'
+            on_press: app.create_entry(head.active, arm.active, stomach.active, leg.active)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                id: message
+                text: 'waiting'
+            Button:
+                text: 'Another Entry'
+                on_press: app.open_choosing_entry()
+
+# All screens are white.
+<Screen>:
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+# All labels are blue.
+<Label>:
+    color: (0, 0, 0.75, 1)
+
+# All checkboxes are blue.
+<CheckBox>:
+    canvas:
+        Color:
+            rgba: (0, 0, 0.75, 1)
+        Rectangle:
+            source: 'atlas://data/images/defaulttheme/checkbox{radio}{disabled}{on}'.format(radio=('_radio' if self.group else ''), disabled=('_disabled' if self.disabled else ''), on=('_on' if self.active else '_off'))
+            size: sp(32), sp(32)
+            pos: int(self.center_x - sp(16)), int(self.center_y - sp(16))
+
+# All buttons have white text.
+<Button>:
+    color: (1, 1, 1, 1)
