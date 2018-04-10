@@ -51,9 +51,6 @@ class CareTakingApp(App):
             app.error == 'Log Completed'
 
 
-
-
-
 if __name__ == '__main__':
     try:
         app = CareTakingApp()
