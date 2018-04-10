@@ -2,18 +2,12 @@
 
 from sys import stderr
 from sqlalchemy.exc import SQLAlchemyError
-from pain_entries import MedicationEntry,MedicationEntryDosage,PainEntryLocation,PainLocation,PainMedicationDatabase,\
+from tables import MedicationEntry,MedicationEntryDosage,PainEntryLocation,PainLocation,PainMedicationDatabase,\
     Medicine,PainEntry
 import datetime
 
 
 def add_starter_data(session):
-    # beverage_menu = Menu(name='Beverage')
-    # food_menu = Menu(name='Food')
-    # orange_juice = Item(menu=beverage_menu, name='Orange Juice', price=149)
-    # short_stack = Item(menu=food_menu, name='Pancakes', price=399)
-    # regular_pancakes = Item(menu=food_menu, name='Pancakes', price=499)
-    # first_order = Order(order_items=[OrderItem(item=orange_juice, amount=2)])
 
     arm_location = PainLocation(body_location = 'Arm')
     leg_location = PainLocation(body_location = 'Leg')
@@ -36,10 +30,10 @@ def add_starter_data(session):
 def main():
     try:
         url = PainMedicationDatabase.construct_mysql_url('localhost', 3306, 'pain_tracking', 'root', 'cse')
-        diner_database = PainMedicationDatabase(url)
-        diner_database.ensure_tables_exist()
+        pain_tracking = PainMedicationDatabase(url)
+        pain_tracking.ensure_tables_exist()
         print('Tables created.')
-        session = diner_database.create_session()
+        session = pain_tracking.create_session()
         add_starter_data(session)
         session.commit()
         print('Records created.')

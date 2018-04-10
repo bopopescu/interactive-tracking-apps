@@ -5,11 +5,11 @@ from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from datetime import datetime
-from pain_entries import MedicationEntry
+from tables import MedicationEntry
 from medication_entry_screen import MedicationEntryScreen
 from choosing_entry import ChoosingEntry
 from pain_entry_screen import PainEntryScreen
-from pain_entries import PainMedicationDatabase, PainLocation, PainEntry, PainEntryLocation, Medicine
+from tables import PainMedicationDatabase, PainLocation, PainEntry, PainEntryLocation, Medicine
 
 
 class MultipleScreenApp(App):
@@ -31,8 +31,19 @@ class MultipleScreenApp(App):
     def open_choosing_entry(self):
         self.root.transition.direction = 'right'
         self.root.current = 'first'
+        self.root.ids.second.ids.head.state = 'normal'
+        self.root.ids.second.ids.arm.state = 'normal'
+        self.root.ids.second.ids.stomach.state = 'normal'
+        self.root.ids.second.ids.leg.state = 'normal'
+        self.root.ids.second.ids.head_severity.text = '1'
+        self.root.ids.second.ids.arm_severity.text = '1'
+        self.root.ids.second.ids.stomach_severity.text = '1'
+        self.root.ids.second.ids.leg_severity.text = '1'
+        self.root.ids.third.ids.acetyl.state = 'normal'
+        self.root.ids.third.ids.paracetamol.state = 'normal'
+        self.root.ids.third.ids.Ib.state = 'normal'
 
-    def create_entry(self,head_selected, arm_selected, stomach_selected, leg_selected):
+    def pain_entry(self,head_selected, arm_selected, stomach_selected, leg_selected):
         try:
             arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
             head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
@@ -48,8 +59,8 @@ class MultipleScreenApp(App):
                 location_list.append(leg)
             if stomach_selected is True:
                 location_list.append(stomach)
-
             pain_entry = PainEntry(time_stamp= datetime.now(), locations=location_list)
+            pain_severity = PainEntryLocation()
             self.session.add(pain_entry)
             self.session.commit()
 
@@ -95,6 +106,7 @@ class MultipleScreenApp(App):
             print('Can not create multiple results found')
         except NoResultFound as exception:
             print('No results found')
+
 
 def main():
     try:

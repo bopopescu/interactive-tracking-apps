@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, relationship
 
 Persisted = declarative_base()
 
+
 class PainEntry(Persisted):
     __tablename__ = 'pain_entry'
     pain_id = Column(Integer, primary_key=True)
@@ -11,12 +12,14 @@ class PainEntry(Persisted):
     locations = relationship('PainLocation', uselist=True, secondary='pain_entry_location')
     # pain_location = relationship('PainLocation',uselist = True, secondary='pain_entry_location')
 
+
 class PainLocation(Persisted):
     __tablename__ = 'locations'
     location_id = Column(Integer, primary_key=True)
     body_location = Column(String(256), nullable = False)
     pain_entry = relationship('PainEntry', uselist=True, secondary='pain_entry_location')
     # pain_entry_location = relationship('PainEntryLocation', back_populates = 'locations')
+
 
 class PainEntryLocation(Persisted):
     __tablename__ = 'pain_entry_location'
@@ -26,12 +29,14 @@ class PainEntryLocation(Persisted):
     # pain_entry = relationship('PainEntry')
     # pain_location = relationship('PainLocation')
 
+
 class MedicationEntry(Persisted):
     __tablename__ = 'medication_entry'
     medication_id = Column(Integer, primary_key=True)
     time_stamp = Column(Date, nullable=False)
     medicine = relationship('Medicine', uselist=True, secondary='medication_entry_dosage')
     #medication_entry_dosage = relationship('MedicationEntryDosage', uselist = True, back_populates='medication_entry')
+
 
 class Medicine(Persisted):
     __tablename__ = 'medicine'
@@ -47,6 +52,7 @@ class MedicationEntryDosage(Persisted):
     dosage = Column(Integer)
     #medicine = relationship('Medicine', back_populates='medication_entry_dosage')
     #medication_entry = relationship('MedicationEntry', back_populates='medication_entry_dosage')
+
 
 class PainMedicationDatabase(object):
     @staticmethod
