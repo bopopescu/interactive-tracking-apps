@@ -1,0 +1,38 @@
+<ChoosingEntry>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Choose'
+        Button:
+            text: 'Pain'
+            on_press: app.open_pain_entry_screen()
+        Button:
+            text: 'Medication'
+            on_press: app.open_medication_entry_screen()
+
+# All screens are white.
+<Screen>:
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+# All labels are blue.
+<Label>:
+    color: (0, 0, 0.75, 1)
+
+# All checkboxes are blue.
+<CheckBox>:
+    canvas:
+        Color:
+            rgba: (0, 0, 0.75, 1)
+        Rectangle:
+            source: 'atlas://data/images/defaulttheme/checkbox{radio}{disabled}{on}'.format(radio=('_radio' if self.group else ''), disabled=('_disabled' if self.disabled else ''), on=('_on' if self.active else '_off'))
+            size: sp(32), sp(32)
+            pos: int(self.center_x - sp(16)), int(self.center_y - sp(16))
+
+# All buttons have white text.
+<Button>:
+    color: (1, 1, 1, 1)
