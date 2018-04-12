@@ -1,0 +1,58 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+       jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+	    flatDir {
+	    	dirs 'libs'
+	    }
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 19
+	buildToolsVersion '23.0.1'
+	defaultConfig {
+		minSdkVersion 9
+		targetSdkVersion 19
+		versionCode 1
+		versionName '0.1'
+	}
+
+	signingConfigs {
+		release {
+			storeFile file(System.getenv("P4A_RELEASE_KEYSTORE"))
+			keyAlias System.getenv("P4A_RELEASE_KEYALIAS")
+			storePassword System.getenv("P4A_RELEASE_KEYSTORE_PASSWD")
+			keyPassword System.getenv("P4A_RELEASE_KEYALIAS_PASSWD")
+		}
+	}
+
+	buildTypes {
+		debug {
+		}
+		release {
+			signingConfig signingConfigs.release
+		}
+	}
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs' 
+            }
+        }
+
+}
+
+dependencies {
+}
