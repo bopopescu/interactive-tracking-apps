@@ -1,0 +1,95 @@
+<ObservationEntry>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20sp'
+        height: "5dp"
+        Spinner:
+            orientation: 'horizontal'
+            id: patient_spinner
+            text: 'Select the patient visited'
+            values: ('Jon Smith', 'Robert Kennedy', 'George Washington')
+            size_hint: (1, None)
+            pos_hint: {'center_x': .5, 'center_y': .75}
+            height: '50sp'
+        Spinner:
+            orientation: 'horizontal'
+            id: location_type_spinner
+            text: 'Select the location type of visit'
+            values: ('Patient Home', 'Hospital')
+            size_hint: (1, None)
+            pos_hint: {'center_x': .5, 'center_y': .75}
+            height: '50sp'
+        Spinner:
+            orientation:'horizontal'
+            id: physical_activity
+            text: "Select value of Patient's physical activity"
+            values: ('5-Very Active', '4-Active', '3-Sometimes Active', '2-Rarely Active', '1-Never Active')
+            size_hint: (1, None)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            height: '50sp'
+        Spinner:
+            orientation:'horizontal'
+            id: appetite
+            text: "Select value of Patient's appetite level"
+            values: ('5-Very Healthy', '4-Healthy', '3-Normal', '2-Needs Improvement', '1-Poor')
+            size_hint: (1, None)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            height: '50sp'
+        Label:
+            text: 'Enter date of birth of Patient'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            color: (0,0,.75,1)
+        TextInput:
+            id: birthdate
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint: (.5, None)
+            height: '30sp'
+            hint_text : 'MM/DD/YYYY'
+        Label:
+            text: 'Enter city of visit'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            color: (0,0,.75,1)
+        TextInput:
+            id: address
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint: (.5, None)
+            height: '30sp'
+            hint_text: 'City'
+        Label:
+            text: 'Enter weight of Patient'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            color: (0,0,.75,1)
+        TextInput:
+            id: weight
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint: (.5, None)
+            height: '30sp'
+            hint_text: 'lb'
+        Label:
+            text: 'Enter Temperature of Patient'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            color : (0,0,.75,1)
+        TextInput:
+            id: temp
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            size_hint: (.5, None)
+            height: '30sp'
+            hint_text: 'Fahrenheit'
+        Button:
+            text: 'Submit Report'
+            color: (1,0,0,1)
+            on_press:app.create_log()
+        Label:
+            id: submit
+            text: app.error
+            color: (0, 0, .75, 1)
+
+
+
+<Screen>:
+    canvas.before:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
