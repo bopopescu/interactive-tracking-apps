@@ -4,7 +4,6 @@ from sys import stderr
 from sqlalchemy.exc import SQLAlchemyError
 from tables import MedicationEntry,MedicationEntryDosage,PainEntryLocation,PainLocation,PainMedicationDatabase,\
     Medicine,PainEntry
-import datetime
 
 
 def add_starter_data(session):
