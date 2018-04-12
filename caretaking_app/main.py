@@ -56,6 +56,10 @@ class CareTakingApp(App):
         else:
             app.error == 'Log Completed'
 
+    def login_in(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'observation'
+
 
 if __name__ == '__main__':
     try:
