@@ -1,8 +1,14 @@
 from kivy.app import App
-from kivy.properties import NumericProperty, StringProperty
+from kivy.properties import StringProperty
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 
+# noinspection PyUnresolvedReferences
+from login_screen import LoginScreen
+# noinspection PyUnresolvedReferences
+from input_screen import ObservationEntry
+# noinspection PyUnresolvedReferences
+from create_account import CreateAccount
 
 
 class CareTakingApp(App):
@@ -49,6 +55,10 @@ class CareTakingApp(App):
             app.error == missing_field
         else:
             app.error == 'Log Completed'
+
+    def login_in(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'observation'
 
 
 if __name__ == '__main__':

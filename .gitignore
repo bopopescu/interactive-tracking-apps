@@ -1,0 +1,8 @@
+*.pyc
+*.pyo
+
+*/.idea
+*/.buildozer
+*/bin
+caretaking_app/.idea
+
