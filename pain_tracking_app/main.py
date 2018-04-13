@@ -49,7 +49,7 @@ class MultipleScreenApp(App):
             head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
             leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
             stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
-            arm_severity = self.session.query(PainEntryLocation).filter(PainLocation.body_location == 'Arm').one()
+            #arm_severity = self.session.query(PainEntryLocation).filter(PainLocation.body_location == 'Arm').one()
             location_list = []
             if arm_selected is True:
                 location_list.append(arm)
