@@ -11,14 +11,6 @@ class CareLog(Persisted):
     patients = relationship('Patient', uselist=True, secondary='observations')
     observations = relationship('Observation', uselist = True, back_populates='log')
 
-class Patient(Persisted):
-    __tablename__ = 'patients'
-    patient_id = Column(Integer, primary_key=True)
-    name = Column(String(256))
-    care_log = relationship('CareLog', uselist=True, back_populates='patients', secondary='observations')
-    observations = relationship('Observation', uselist = True, back_populates ='patient')
-
-
 class Observation(Persisted):
     __tablename__ = 'observations'
     observation_id = Column(Integer, primary_key=True)
@@ -82,6 +74,19 @@ class MedicationEntryDosage(Persisted):
     dosage = Column(Integer)
     #medicine = relationship('Medicine', back_populates='medication_entry_dosage')
     #medication_entry = relationship('MedicationEntry', back_populates='medication_entry_dosage')
+
+class User(Persisted):
+    __tablename__ = 'users'
+    user_id = Column(Integer, primary_key=True)
+    surname = Column(String(256), nullable= False)
+    given_name = Column(String(256), nullable=False)
+    patient = relationship('Patient', back_populates='user')
+
+class Patient(Persisted):
+    __tablename__ = 'patients'
+    patient_id = Column(Integer, primary_key=True)
+    name = Column(String(256))
+    user = relationship('User', back_populates='patient')
 
 
 class CombinedDatabase(object):
