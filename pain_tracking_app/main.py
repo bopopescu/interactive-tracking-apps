@@ -1,12 +1,17 @@
 from kivy.app import App
-
-# noinspection PyUnresolvedReferences
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from datetime import datetime
+from installer.database import CombinedDatabase, PainLocation, PainEntry, PainEntryLocation, \
+    Medicine, MedicationEntryDosage, MedicationEntry
 
-from installer.database import PainLocation, CombinedDatabase, PainEntry, Medicine, MedicationEntry
+# noinspection PyUnresolvedReferences
+from medication_entry_screen import MedicationEntryScreen
+# noinspection PyUnresolvedReferences
+from choosing_entry import ChoosingEntry
+# noinspection PyUnresolvedReferences
+from pain_entry_screen import PainEntryScreen
 
 
 class MultipleScreenApp(App):
@@ -40,13 +45,12 @@ class MultipleScreenApp(App):
         self.root.ids.third.ids.paracetamol.state = 'normal'
         self.root.ids.third.ids.Ib.state = 'normal'
 
-    def pain_entry(self,head_selected, arm_selected, stomach_selected, leg_selected):
+    def pain_entry(self, head_selected, arm_selected, stomach_selected, leg_selected):
         try:
             arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
             head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
             leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
             stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
-            #arm_severity = self.session.query(PainEntryLocation).filter(PainLocation.body_location == 'Arm').one()
             location_list = []
             if arm_selected is True:
                 location_list.append(arm)
@@ -56,7 +60,7 @@ class MultipleScreenApp(App):
                 location_list.append(leg)
             if stomach_selected is True:
                 location_list.append(stomach)
-            pain_entry = PainEntry(time_stamp= datetime.now(), locations=location_list)
+            pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
             self.session.add(pain_entry)
             self.session.commit()
 
@@ -67,10 +71,10 @@ class MultipleScreenApp(App):
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
             #Bugged
-            #self.root.ids.second.message.text = 'Coudln't connect to the database'
-        except MultipleResultsFound as exception:
+            #self.root.ids.second.message.text = 'Couldn't connect to the database'
+        except MultipleResultsFound:
             print('Can not create multiple results found')
-        except NoResultFound as exception:
+        except NoResultFound:
             print('No results found')
 
     def save_medication(self, acetyl_selected, paracetamol_selected, ib_selected):
@@ -87,7 +91,7 @@ class MultipleScreenApp(App):
             if ib_selected is True:
                 med_list.append(ib)
 
-            med_entry = MedicationEntry(time_stamp= datetime.now(), medicine=med_list)
+            med_entry = MedicationEntry(time_stamp=datetime.now(), medicine=med_list)
             self.session.add(med_entry)
             self.session.commit()
 
@@ -97,10 +101,10 @@ class MultipleScreenApp(App):
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
-            #self.root.ids.second.message.text = 'Coudln't connect to the database'
-        except MultipleResultsFound as exception:
+            #self.root.ids.second.message.text = 'Coudldn't connect to the database'
+        except MultipleResultsFound:
             print('Can not create multiple results found')
-        except NoResultFound as exception:
+        except NoResultFound:
             print('No results found')
 
 

@@ -13,6 +13,11 @@
 =======
     <list default="true" id="30fd6ef5-027d-49c6-9a50-49a996caf57f" name="Default" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pain_tracking_app/installer.py" afterPath="$PROJECT_DIR$/pain_tracking_app/installer.py" />
+=======
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pain_tracking_app/main.py" afterPath="$PROJECT_DIR$/pain_tracking_app/main.py" />
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/installer/database.py" afterPath="$PROJECT_DIR$/installer/database.py" />
@@ -60,7 +65,11 @@
 >>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
         <entry file="file://$PROJECT_DIR$/installer/database.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="-272">
+=======
             <state relative-caret-position="-1334">
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
               <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
@@ -71,6 +80,16 @@
         </entry>
       </file>
 <<<<<<< HEAD
+<<<<<<< HEAD
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pain_tracking_app/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+=======
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/caretaking_app/main.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,6 +119,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1360">
               <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
 =======
 <<<<<<< HEAD
       <file leaf-file-name="input_screen.kv" pinned="false" current-in-tab="false">
@@ -109,16 +129,20 @@
               <caret line="15" column="37" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="37" />
 >>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
               <folding />
+>>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
             </state>
           </provider>
         </entry>
       </file>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
       <file leaf-file-name="pain_entry.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pain_tracking_app/pain_entry.kv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
 =======
       <file leaf-file-name="caretaking.kv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/caretaking_app/caretaking.kv">
@@ -172,7 +196,11 @@
 =======
         <option value="$PROJECT_DIR$/installer/database.py" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/pain_tracking_app/installer.py" />
+=======
         <option value="$PROJECT_DIR$/caretaking_app/main.py" />
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
         <option value="$PROJECT_DIR$/pain_tracking_app/main.py" />
 =======
 >>>>>>> 4cd4710c838602642d7ba3d482e71320455d43be
@@ -263,6 +291,8 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="installer" />
+<<<<<<< HEAD
+=======
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -277,6 +307,7 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="caretaking_app" />
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -500,10 +531,16 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
 =======
     <frame x="0" y="0" width="1280" height="664" extended-state="6" />
+<<<<<<< HEAD
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17820206" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
     <editor active="false" />
 >>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17870322" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
@@ -536,6 +573,22 @@
 >>>>>>> 4cd4710c838602642d7ba3d482e71320455d43be
 >>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1789976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -590,14 +643,33 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/pain_tracking_app/installer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="92" selection-start-line="4" selection-start-column="92" selection-end-line="4" selection-end-column="92" />
+=======
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/caretaking_app/createAccount.kv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="24" column="20" selection-start-line="3" selection-start-column="8" selection-end-line="29" selection-end-column="0" />
+>>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/pain_tracking_app/tables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-612">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+=======
     <entry file="file://$PROJECT_DIR$/caretaking_app/login_screen.kv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
@@ -645,8 +717,12 @@
           <folding>
             <element signature="e#0#24#0" expanded="true" />
 =======
+>>>>>>> e95f4e36fb10e69a3e423ca922898b03bdfec254
     <entry file="file://$PROJECT_DIR$/installer/database.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="-272">
+=======
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
@@ -704,6 +780,7 @@
     <entry file="file://$PROJECT_DIR$/installer/database.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1334">
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
@@ -714,8 +791,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pain_tracking_app/main.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="85">
+          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+=======
         <state relative-caret-position="1972">
           <caret line="116" column="26" selection-start-line="116" selection-start-column="26" selection-end-line="116" selection-end-column="26" />
+>>>>>>> d9fbe2bef99650693d73482b443084805c95e6f0
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
