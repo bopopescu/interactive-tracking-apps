@@ -5,19 +5,16 @@ from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from datetime import datetime
-from tables import MedicationEntry
-from medication_entry_screen import MedicationEntryScreen
-from choosing_entry import ChoosingEntry
-from pain_entry_screen import PainEntryScreen
-from tables import PainMedicationDatabase, PainLocation, PainEntry, PainEntryLocation, Medicine
+
+from installer.database import PainLocation, CombinedDatabase, PainEntry, Medicine, MedicationEntry
 
 
 class MultipleScreenApp(App):
 
     def __init__(self, **kwargs):
         super(MultipleScreenApp, self).__init__(**kwargs)
-        url = PainMedicationDatabase.construct_mysql_url('localhost', 3306, 'pain_tracking', 'root', 'cse')
-        self.movie_database = PainMedicationDatabase(url)
+        url = CombinedDatabase.construct_mysql_url('localhost', 3306, 'pain_tracking', 'root', 'cse')
+        self.movie_database = CombinedDatabase(url)
         self.session = self.movie_database.create_session()
 
     def open_medication_entry_screen(self):
