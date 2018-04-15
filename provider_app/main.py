@@ -4,20 +4,8 @@ from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 
 
-
-
-
-
-
 class ProviderApp(App):
     pass
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
