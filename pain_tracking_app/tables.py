@@ -10,15 +10,15 @@ class PainEntry(Persisted):
     pain_id = Column(Integer, primary_key=True)
     time_stamp = Column(Date, nullable=False)
     locations = relationship('PainLocation', uselist=True, secondary='pain_entry_location')
-    # pain_location = relationship('PainLocation',uselist = True, secondary='pain_entry_location')
+    pain_entry_location = relationship('PainEntryLocation', back_populates='pain_entry')
 
 
 class PainLocation(Persisted):
     __tablename__ = 'locations'
     location_id = Column(Integer, primary_key=True)
     body_location = Column(String(256), nullable = False)
-    pain_entry = relationship('PainEntry', uselist=True, secondary='pain_entry_location')
-    # pain_entry_location = relationship('PainEntryLocation', back_populates = 'locations')
+    pain_entries = relationship('PainEntry', uselist=True, secondary='pain_entry_location')
+    pain_entry_location = relationship('PainEntryLocation', back_populates = 'pain_location')
 
 
 class PainEntryLocation(Persisted):
@@ -26,23 +26,24 @@ class PainEntryLocation(Persisted):
     pain_id = Column(Integer, ForeignKey('pain_entry.pain_id'), primary_key=True)
     location_id = Column(Integer, ForeignKey('locations.location_id'), primary_key= True)
     severity = Column(Integer)
-    # pain_entry = relationship('PainEntry')
-    # pain_location = relationship('PainLocation')
+    pain_entry = relationship('PainEntry', back_populates='pain_entry_location')
+    pain_location = relationship('PainLocation', back_populates='pain_entry_location')
 
 
 class MedicationEntry(Persisted):
     __tablename__ = 'medication_entry'
     medication_id = Column(Integer, primary_key=True)
     time_stamp = Column(Date, nullable=False)
-    medicine = relationship('Medicine', uselist=True, secondary='medication_entry_dosage')
-    #medication_entry_dosage = relationship('MedicationEntryDosage', uselist = True, back_populates='medication_entry')
+    medicines = relationship('Medicine', uselist=True, secondary='medication_entry_dosage')
+    medication_dosage = relationship('MedicationEntryDosage', back_populates='medication_entry')
 
 
 class Medicine(Persisted):
     __tablename__ = 'medicine'
     medicine_id = Column(Integer, primary_key=True)
     medicine_type = Column(String(256), nullable = False)
-    medication_entry = relationship('MedicationEntry', uselist=True, secondary='medication_entry_dosage')
+    medication_entries = relationship('MedicationEntry', uselist=True, secondary='medication_entry_dosage')
+    medication_dosage = relationship('MedicationEntryDosage', back_populates='medicine')
 
 
 class MedicationEntryDosage(Persisted):
@@ -50,8 +51,8 @@ class MedicationEntryDosage(Persisted):
     medication_id = Column(Integer, ForeignKey('medication_entry.medication_id'), primary_key=True)
     medicine_id = Column(Integer, ForeignKey('medicine.medicine_id'), primary_key=True)
     dosage = Column(Integer)
-    #medicine = relationship('Medicine', back_populates='medication_entry_dosage')
-    #medication_entry = relationship('MedicationEntry', back_populates='medication_entry_dosage')
+    medicine = relationship('Medicine', back_populates='medication_dosage')
+    medication_entry = relationship('MedicationEntry', back_populates='medication_dosage')
 
 
 class PainMedicationDatabase(object):
