@@ -7,11 +7,11 @@ from installer.database import CombinedDatabase, PainLocation, PainEntry, PainEn
     Medicine, MedicationEntryDosage, MedicationEntry
 
 # noinspection PyUnresolvedReferences
-from medication_entry_screen import MedicationEntryScreen
+from medication_entry import MedicationEntryScreen
 # noinspection PyUnresolvedReferences
 from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
-from pain_entry_screen import PainEntryScreen
+from pain_entry import PainEntryScreen
 
 
 class MultipleScreenApp(App):
@@ -54,6 +54,7 @@ class MultipleScreenApp(App):
             location_list = []
             if arm_selected is True:
                 location_list.append(arm)
+                arm_severity = self.session.query(PainEntryLocation.severity).filter(PainLocation.body_location == 'Arm')
             if head_selected is True:
                 location_list.append(head)
             if leg_selected is True:
