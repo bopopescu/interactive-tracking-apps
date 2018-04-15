@@ -20,7 +20,7 @@ class CareTakingApp(App):
     weight = StringProperty('weight')
     temperature = StringProperty('temperature')
     patient = StringProperty('Select the patient visited')
-    error = StringProperty('Progress')
+    error = StringProperty('')
 
     def load(self):
         self.load_kv('caretaking.kv')
@@ -35,8 +35,9 @@ class CareTakingApp(App):
         city = self.root.ids.address.text
         temp = self.root.ids.temp.text
         weight = self.root.ids.weight.text
-
         missing_field = 'You are missing one or many fields'
+
+
         if patient_id == 'Select the patient visited':
             app.error = missing_field
         if location =='Select the location type of visit':
@@ -59,6 +60,13 @@ class CareTakingApp(App):
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
+    def create_account(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'create account'
+    def back_to_login(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'login'
+
 
 
 if __name__ == '__main__':
