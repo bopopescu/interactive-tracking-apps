@@ -9,6 +9,9 @@ from login_screen import LoginScreen
 from input_screen import ObservationEntry
 # noinspection PyUnresolvedReferences
 from create_account import CreateAccount
+# noinspection PyUnresolvedReferences
+from caretaking_review_screen import ReviewScreen
+
 
 
 class CareTakingApp(App):
@@ -56,6 +59,9 @@ class CareTakingApp(App):
             app.error == missing_field
         else:
             app.error == 'Log Completed'
+            self.root.transition.direction = 'left'
+            self.root.current = 'review'
+
 
     def login_in(self):
         self.root.transition.direction = 'left'
