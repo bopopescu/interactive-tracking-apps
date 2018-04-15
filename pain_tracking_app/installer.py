@@ -2,8 +2,11 @@
 
 from sys import stderr
 from sqlalchemy.exc import SQLAlchemyError
-from tables import MedicationEntry,MedicationEntryDosage,PainEntryLocation,PainLocation,PainMedicationDatabase,\
-    Medicine,PainEntry
+<<<<<<< HEAD
+
+=======
+from tables import MedicationEntry, MedicationEntryDosage, PainEntryLocation, PainLocation, PainMedicationDatabase, Medicine, PainEntry
+>>>>>>> 53569b916a83f4eeddf137c7a800028eb935fa58
 
 
 def add_starter_data(session):
