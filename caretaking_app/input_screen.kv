@@ -79,6 +79,9 @@
             text: 'Submit Report'
             color: (1,0,0,1)
             on_press:app.create_log()
+        Button:
+            text: 'Back'
+            on_press:app.back_to_login()
         Label:
             id: submit
             text: app.error
