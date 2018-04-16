@@ -9,6 +9,7 @@ Persisted = declarative_base()
 class CareLog(Persisted):
     __tablename__ = 'logs'
     care_log_id = Column(Integer, primary_key=True)
+    time_stamp = Column(Date, nullable=False)
     patients = relationship('Patient', uselist=True, secondary='observations')
     observations = relationship('Observation', uselist=True, back_populates='log')
 
@@ -91,6 +92,7 @@ class User(Persisted):
 class Patient(Persisted):
     __tablename__ = 'patients'
     patient_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.user_id'))
     name = Column(String(256))
     user = relationship('User', back_populates='patient')
 

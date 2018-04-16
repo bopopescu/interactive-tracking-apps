@@ -3,15 +3,14 @@ from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from datetime import datetime
-from installer.database import CombinedDatabase, PainLocation, PainEntry, PainEntryLocation, \
-    Medicine, MedicationEntryDosage, MedicationEntry
-
 # noinspection PyUnresolvedReferences
 from medication_entry import MedicationEntryScreen
 # noinspection PyUnresolvedReferences
 from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
+
+from installer.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry
 
 
 class MultipleScreenApp(App):
