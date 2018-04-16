@@ -43,7 +43,7 @@ class PainLocation(Persisted):
     location_id = Column(Integer, primary_key=True)
     body_location = Column(String(256), nullable=False)
     pain_entries = relationship('PainEntry', uselist=True, secondary='pain_entry_location')
-    pain_entry_location = relationship('PainEntryLocation', uselist=True, back_populates = 'pain_location')
+    pain_entry_location = relationship('PainEntryLocation', uselist=True, back_populates='pain_location')
 
 
 class PainEntryLocation(Persisted):

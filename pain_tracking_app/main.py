@@ -10,7 +10,7 @@ from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-from installer.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry
+from pain_tracking_app.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MultipleScreenApp(App):
@@ -44,6 +44,14 @@ class MultipleScreenApp(App):
         self.root.ids.third.ids.paracetamol.state = 'normal'
         self.root.ids.third.ids.Ib.state = 'normal'
 
+    @staticmethod
+    def _pain_entry_severity(session, pain_entry, pain_location, severity):
+        entry = session.query(PainEntryLocation).filter(PainEntryLocation.pain_id == pain_entry.pain_id,
+                                                        PainEntryLocation.location_id == pain_location.location_id).first()
+        entry.severity = severity
+        session.add(entry)
+        session.commit()
+
     def pain_entry(self, head_selected, arm_selected, stomach_selected, leg_selected):
         try:
             arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
@@ -51,18 +59,24 @@ class MultipleScreenApp(App):
             leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
             stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
             location_list = []
+            severity_list = []
             if arm_selected is True:
                 location_list.append(arm)
-                arm_severity = self.session.query(PainEntryLocation.severity).filter(PainLocation.body_location == 'Arm')
+                severity_list.append(int(self.root.ids.second.ids.arm_severity.text))
             if head_selected is True:
                 location_list.append(head)
+                severity_list.append(int(self.root.ids.second.ids.head_severity.text))
             if leg_selected is True:
                 location_list.append(leg)
+                severity_list.append(int(self.root.ids.second.ids.leg_severity.text))
             if stomach_selected is True:
                 location_list.append(stomach)
+                severity_list.append(int(self.root.ids.second.ids.stomach_severity.text))
             pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
             self.session.add(pain_entry)
             self.session.commit()
+            for x in range(len(location_list)):
+                self._pain_entry_severity(self.session, pain_entry, location_list[x], severity_list[x])
 
             #Bugged
             #self.root.ids.second.message.text = 'Entry Saved'
