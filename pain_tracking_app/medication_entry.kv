@@ -24,23 +24,20 @@
             Label:
                 text: 'Ibuprofen (mg)'
             CheckBox:
-                id: Ib
+                id: ibuprofen
             TextInput:
-                id: Ib_comment
-
+                id: ibuprofen_comment
         Button:
             text: 'Save'
-            on_press: app.save_medication(acetyl.active, paracetamol.active, Ib.active)
-
+            on_press: app.save_medication(acetyl.active, paracetamol.active, ibuprofen.active)
         BoxLayout:
             orientation: 'horizontal'
             Label:
-                id: report_med
+                id: report_entry
                 text: 'waiting'
             Button:
                 text: 'Another Entry'
                 on_press: app.open_choosing_entry()
-
 # All screens are white.
 <Screen>:
     canvas.before:

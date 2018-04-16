@@ -42,7 +42,10 @@ class MultipleScreenApp(App):
         self.root.ids.second.ids.leg_severity.text = '1'
         self.root.ids.third.ids.acetyl.state = 'normal'
         self.root.ids.third.ids.paracetamol.state = 'normal'
-        self.root.ids.third.ids.Ib.state = 'normal'
+        self.root.ids.third.ids.ibuprofen.state = 'normal'
+        self.root.ids.third.ids.acetyl_comment.text = ''
+        self.root.ids.third.ids.paracetamol_comment.text = ''
+        self.root.ids.third.ids.ibuprofen_comment.text = ''
 
     @staticmethod
     def _pain_entry_severity(session, pain_entry, pain_location, severity):
@@ -77,11 +80,11 @@ class MultipleScreenApp(App):
             self.session.commit()
             for x in range(len(location_list)):
                 self._pain_entry_severity(self.session, pain_entry, location_list[x], severity_list[x])
+            self.root.ids.second.ids.report_entry.text = 'Entry Saved'
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
-            #Bugged
-            #self.root.ids.second.message.text = 'Couldn't connect to the database'
+            self.root.ids.second.ids.report_entry.text = 'Couldn\'t connect to the database'
         except MultipleResultsFound:
             print('Can not create multiple results found')
         except NoResultFound:
@@ -91,31 +94,40 @@ class MultipleScreenApp(App):
         try:
             acetyl = self.session.query(Medicine).filter(Medicine.medicine_type == 'Acetylsalicylic (mg)').one()
             paracetamol = self.session.query(Medicine).filter(Medicine.medicine_type == 'Paracetamol (ml)').one()
-            ib = self.session.query(Medicine).filter(Medicine.medicine_type == 'Ibuprofen (mg)').one()
-
+            ibuprofen = self.session.query(Medicine).filter(Medicine.medicine_type == 'Ibuprofen (mg)').one()
             med_list = []
+            dosage_list = []
             if acetyl_selected is True:
                 med_list.append(acetyl)
+                dosage_list.append(int(self.root.ids.third.ids.acetyl_comment.text))
             if paracetamol_selected is True:
                 med_list.append(paracetamol)
+                dosage_list.append(int(self.root.ids.third.ids.paracetamol_comment.text))
             if ib_selected is True:
-                med_list.append(ib)
-
-            med_entry = MedicationEntry(time_stamp=datetime.now(), medicine=med_list)
+                med_list.append(ibuprofen)
+                dosage_list.append(int(self.root.ids.third.ids.ibuprofen_comment.text))
+            med_entry = MedicationEntry(time_stamp=datetime.now(), medicines=med_list)
             self.session.add(med_entry)
             self.session.commit()
-
-            #Bugged
-            #self.root.ids.second.message.text = 'Entry Saved'
-
+            for y in range(len(med_list)):
+                self._medication_entry_dosage(self.session, med_entry, med_list[y], dosage_list[y])
+            self.root.ids.third.ids.report_entry.text = 'Entry Saved'
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
-            #self.root.ids.second.message.text = 'Coudldn't connect to the database'
+            self.root.ids.third.report_entry.text = 'Coudldn\'t connect to the database'
         except MultipleResultsFound:
             print('Can not create multiple results found')
         except NoResultFound:
             print('No results found')
+
+    @staticmethod
+    def _medication_entry_dosage(session, medication, medicine, dosage):
+        entry = session.query(MedicationEntryDosage).filter(MedicationEntry.medication_id == medication.medication_id,
+                                                            Medicine.medicine_id == medicine.medicine_id).first()
+        entry.dosage = dosage
+        session.add(entry)
+        session.commit()
 
 
 def main():
