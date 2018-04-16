@@ -17,9 +17,9 @@ class MultipleScreenApp(App):
 
     def __init__(self, **kwargs):
         super(MultipleScreenApp, self).__init__(**kwargs)
-        url = CombinedDatabase.construct_mysql_url('localhost', 3306, 'pain_tracking', 'root', 'cse')
-        self.movie_database = CombinedDatabase(url)
-        self.session = self.movie_database.create_session()
+        url = CombinedDatabase.construct_mysql_url('mysql.poetical-science.org', 3306, 'soft161_team_6', 'soft161_team_6', 'chromosome+differentiates<')
+        self.pain_tracking_database = CombinedDatabase(url)
+        self.session = self.pain_tracking_database.create_session()
 
     def open_medication_entry_screen(self):
         self.root.transition.direction = 'right'
@@ -77,10 +77,6 @@ class MultipleScreenApp(App):
             self.session.commit()
             for x in range(len(location_list)):
                 self._pain_entry_severity(self.session, pain_entry, location_list[x], severity_list[x])
-
-            #Bugged
-            #self.root.ids.second.message.text = 'Entry Saved'
-
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
