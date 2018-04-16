@@ -9,7 +9,6 @@ Persisted = declarative_base()
 class CareLog(Persisted):
     __tablename__ = 'logs'
     care_log_id = Column(Integer, primary_key=True)
-    time_stamp = Column(Date, nullable=False)
     patients = relationship('Patient', uselist=True, secondary='observations')
     observations = relationship('Observation', uselist=True, back_populates='log')
 
@@ -22,7 +21,7 @@ class Observation(Persisted):
     location = Column(String(256))
     activity = Column(String(256))
     appetite = Column(String(256))
-    birthdate = Column(String(256))
+    birth_date = Column(String(256))
     city = Column(String(256))
     weight = Column(String(256))
     temperature = Column(String(256))
@@ -95,6 +94,7 @@ class Patient(Persisted):
     user_id = Column(Integer, ForeignKey('users.user_id'))
     name = Column(String(256))
     user = relationship('User', back_populates='patient')
+    observations = relationship('Observation', uselist=True, back_populates='patient')
 
 
 class CombinedDatabase(object):
