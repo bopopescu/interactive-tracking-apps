@@ -46,6 +46,8 @@ class MultipleScreenApp(App):
         self.root.ids.third.ids.acetyl_comment.text = ''
         self.root.ids.third.ids.paracetamol_comment.text = ''
         self.root.ids.third.ids.ibuprofen_comment.text = ''
+        self.root.ids.second.ids.report_entry.text = 'waiting'
+        self.root.ids.third.ids.report_entry.text = 'waiting'
 
     @staticmethod
     def _pain_entry_severity(session, pain_entry, pain_location, severity):
@@ -99,13 +101,13 @@ class MultipleScreenApp(App):
             dosage_list = []
             if acetyl_selected is True:
                 med_list.append(acetyl)
-                dosage_list.append(int(self.root.ids.third.ids.acetyl_comment.text))
+                dosage_list.append(self.root.ids.third.ids.acetyl_comment.text)
             if paracetamol_selected is True:
                 med_list.append(paracetamol)
-                dosage_list.append(int(self.root.ids.third.ids.paracetamol_comment.text))
+                dosage_list.append(self.root.ids.third.ids.paracetamol_comment.text)
             if ib_selected is True:
                 med_list.append(ibuprofen)
-                dosage_list.append(int(self.root.ids.third.ids.ibuprofen_comment.text))
+                dosage_list.append(self.root.ids.third.ids.ibuprofen_comment.text)
             med_entry = MedicationEntry(time_stamp=datetime.now(), medicines=med_list)
             self.session.add(med_entry)
             self.session.commit()
@@ -123,8 +125,8 @@ class MultipleScreenApp(App):
 
     @staticmethod
     def _medication_entry_dosage(session, medication, medicine, dosage):
-        entry = session.query(MedicationEntryDosage).filter(MedicationEntry.medication_id == medication.medication_id,
-                                                            Medicine.medicine_id == medicine.medicine_id).first()
+        entry = session.query(MedicationEntryDosage).filter(MedicationEntryDosage.medication_id == medication.medication_id,
+                                                            MedicationEntryDosage.medicine_id == medicine.medicine_id).first()
         entry.dosage = dosage
         session.add(entry)
         session.commit()
