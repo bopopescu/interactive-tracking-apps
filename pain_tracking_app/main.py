@@ -10,7 +10,7 @@ from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-from installer.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry
+from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry
 
 
 class MultipleScreenApp(App):
@@ -46,21 +46,23 @@ class MultipleScreenApp(App):
 
     def pain_entry(self, head_selected, arm_selected, stomach_selected, leg_selected):
         try:
-            arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
-            head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
-            leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
-            stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
-            location_list = []
-            if arm_selected is True:
-                location_list.append(arm)
-                arm_severity = self.session.query(PainEntryLocation.severity).filter(PainLocation.body_location == 'Arm')
-            if head_selected is True:
-                location_list.append(head)
-            if leg_selected is True:
-                location_list.append(leg)
-            if stomach_selected is True:
-                location_list.append(stomach)
+            # arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
+            # head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
+            # leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
+            # stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
+            #
+            # location_list = []
+            # if arm_selected is True:
+            #     location_list.append(arm)
+            # if head_selected is True:
+            #     location_list.append(head)
+            # if leg_selected is True:
+            #     location_list.append(leg)
+            # if stomach_selected is True:
+            #     location_list.append(stomach)
+
             pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
+
             self.session.add(pain_entry)
             self.session.commit()
 
