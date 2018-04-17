@@ -18,25 +18,25 @@ def add_starter_data(session):
     session.add(george_washington)
 
     care_log = CareLog()
-    jon_obs = Observation(patient= jon_smith,log = care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birthdate='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
+    jon_obs = Observation(patient= jon_smith, log=care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
     session.add(jon_obs)
 
     care_log1 = CareLog()
-    robert = Observation(patient= robert_kennedy,log = care_log1,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birthdate='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
+    robert = Observation(patient= robert_kennedy, log=care_log1, location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
     session.add(robert)
 
     care_log2 = CareLog()
-    george = Observation(patient= george_washington,log = care_log2,location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birthdate='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
+    george = Observation(patient= george_washington, log=care_log2,location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
     session.add(george)
 
-    arm_location = PainLocation(body_location = 'Arm')
-    leg_location = PainLocation(body_location = 'Leg')
-    head_location = PainLocation(body_location = 'Head')
-    stomach_location = PainLocation(body_location = 'Stomach')
+    arm_location = PainLocation(body_location='Arm')
+    leg_location = PainLocation(body_location='Leg')
+    head_location = PainLocation(body_location='Head')
+    stomach_location = PainLocation(body_location='Stomach')
 
-    Acetyl = Medicine(medicine_type = 'Acetylsalicylic (mg)')
-    paracetamol = Medicine(medicine_type = 'Paracetamol (ml)')
-    Ibuprofen = Medicine(medicine_type = 'Ibuprofen (mg)')
+    Acetyl = Medicine(medicine_type='Acetylsalicylic (mg)')
+    paracetamol = Medicine(medicine_type='Paracetamol (ml)')
+    Ibuprofen = Medicine(medicine_type='Ibuprofen (mg)')
 
     session.add(leg_location)
     session.add(arm_location)
