@@ -1,30 +1,5 @@
 ScreenManager:
-    Screen:
-        name: 'Look up Patient'
-        BoxLayout:
-            orientation: 'vertical'
-            padding: '20sp'
-            height: "5dp"
-            Label:
-                text: 'Enter Patient ID'
-                pos_hint: {'center_x': .5, 'center_y': .5}
-                color: (0,0,.75,1)
-            TextInput:
-                id: patient_id
-                pos_hint: {'center_x': .5, 'center_y': .5}
-                size_hint: (.5, None)
-                height: '30sp'
-                hint_text : 'ID'
-            Button:
-                text: 'Submit'
-                color: (1,0,0,1)
-                on_press:
-
-<Screen>:
-    canvas.before:
-        Color:
-            rgba: (1, 1, 1, 1)
-        Rectangle:
-            pos: self.pos
-            size: self.size
+    LoginScreen:
+        id: login
+        name: 'login'
 

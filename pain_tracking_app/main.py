@@ -10,11 +10,7 @@ from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-<<<<<<< HEAD
-from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry
-=======
 from pain_tracking_app.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
->>>>>>> 0ce97b18db4dc9eaffaa9c4ab89ae6289e71b7fc
 
 
 class MultipleScreenApp(App):
@@ -63,23 +59,6 @@ class MultipleScreenApp(App):
 
     def pain_entry(self, head_selected, arm_selected, stomach_selected, leg_selected):
         try:
-<<<<<<< HEAD
-            # arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
-            # head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
-            # leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
-            # stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
-            #
-            # location_list = []
-            # if arm_selected is True:
-            #     location_list.append(arm)
-            # if head_selected is True:
-            #     location_list.append(head)
-            # if leg_selected is True:
-            #     location_list.append(leg)
-            # if stomach_selected is True:
-            #     location_list.append(stomach)
-
-=======
             arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
             head = self.session.query(PainLocation).filter(PainLocation.body_location == 'Head').one()
             leg = self.session.query(PainLocation).filter(PainLocation.body_location == 'Leg').one()
@@ -98,9 +77,7 @@ class MultipleScreenApp(App):
             if stomach_selected is True:
                 location_list.append(stomach)
                 severity_list.append(int(self.root.ids.second.ids.stomach_severity.text))
->>>>>>> 0ce97b18db4dc9eaffaa9c4ab89ae6289e71b7fc
             pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
-
             self.session.add(pain_entry)
             self.session.commit()
             for x in range(len(location_list)):

@@ -3,6 +3,9 @@ from kivy.properties import NumericProperty, StringProperty
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 
+# noinspection PyUnresolvedReferences
+from login import LoginScreen
+
 
 class ProviderApp(App):
     pass
