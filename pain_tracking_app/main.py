@@ -4,13 +4,14 @@ from sys import stderr
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from datetime import datetime
 # noinspection PyUnresolvedReferences
+from database import CombinedDatabase, PainEntryLocation, PainLocation, PainEntry, Medicine, MedicationEntry, \
+    MedicationEntryDosage
 from medication_entry import MedicationEntryScreen
 # noinspection PyUnresolvedReferences
 from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-from pain_tracking_app.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MultipleScreenApp(App):
@@ -130,7 +131,6 @@ class MultipleScreenApp(App):
         entry.dosage = dosage
         session.add(entry)
         session.commit()
-
 
 def main():
     try:
