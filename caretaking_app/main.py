@@ -13,7 +13,6 @@ from create_account import CreateAccount
 from caretaking_review_screen import ReviewScreen
 
 
-
 class CareTakingApp(App):
     location = StringProperty('location type')
     activity = StringProperty('activity')
