@@ -1,11 +1,12 @@
 <ReviewScreen>
     BoxLayout:
+        orientation: 'vertical'
         Label:
             text: 'Patient Name:'
             pos_hint: {'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text: app.patient_id
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -13,7 +14,7 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text: app.location
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -21,7 +22,7 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text: app.activity
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -29,7 +30,7 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text:app.appetite
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -37,7 +38,7 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text:app.birth
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -45,7 +46,7 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text:app.city
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -53,7 +54,7 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text:app.weight
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Label:
@@ -61,13 +62,19 @@
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (1,0,0,1)
         Label:
-            text: ''
+            text:app.temp
             pos_hint:{'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         Button:
             text: 'Confirm and Submit Report'
             color: (1,0,0,1)
             on_press:
+        Button:
+            text: 'Go Back'
+            color: (1,0,0,1)
+            on_press: app.login_in()
+        Label:
+            text:
 
 
 

@@ -3,12 +3,15 @@
         orientation: 'vertical'
         padding: '20sp'
         height: "5dp"
-        Spinner:
+        Label:
+            text: 'Enter First and Last Name of Patient'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            color: (0,0,.75,1)
+        TextInput:
             orientation: 'horizontal'
             id: patient_spinner
-            text: 'Select the patient visited'
-            values: ('Jon Smith', 'Robert Kennedy', 'George Washington')
-            size_hint: (1, None)
+            hint_text: 'Patient First and Last Name'
+            size_hint: (.5, None)
             pos_hint: {'center_x': .5, 'center_y': .75}
             height: '50sp'
         Spinner:
