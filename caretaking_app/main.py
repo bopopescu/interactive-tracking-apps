@@ -20,10 +20,11 @@ class CareTakingApp(App):
     date = StringProperty('date')
     city = StringProperty('city')
     weight = StringProperty('weight')
-    temperature = StringProperty('temperature')
+    temp = StringProperty('temperature')
     patient = StringProperty('Select the patient visited')
     error = StringProperty('')
     patient_id = StringProperty('')
+    birth = StringProperty('')
 
 
 
@@ -31,38 +32,41 @@ class CareTakingApp(App):
         self.load_kv('caretaking.kv')
 
     def create_log(self):
-        patient_id = self.root.ids.observation.ids.patient_spinner.text
-        location = self.root.ids.observation.ids.location_type_spinner.text
-        activity = self.root.ids.observation.ids.physical_activity.text
-        appetite = self.root.ids.observation.ids.appetite.text
-        app.error = self.root.ids.observation.ids.submit.text
-        birth = self.root.ids.observation.ids.birthdate.text
-        city = self.root.ids.observation.ids.address.text
-        temp = self.root.ids.observation.ids.temp.text
-        weight = self.root.ids.observation.ids.weight.text
-        missing_field = 'You are missing one or many fields'
+        self.patient_id = self.root.ids.observation.ids.patient_spinner.text
+        self.location = self.root.ids.observation.ids.location_type_spinner.text
+        self.activity = self.root.ids.observation.ids.physical_activity.text
+        self.appetite = self.root.ids.observation.ids.appetite.text
+        self.error = self.root.ids.observation.ids.submit.text
+        self.birth = self.root.ids.observation.ids.birthdate.text
+        self.city = self.root.ids.observation.ids.address.text
+        self.temp = self.root.ids.observation.ids.temp.text
+        self.weight = self.root.ids.observation.ids.weight.text
+        self.missing_field = 'You are missing one or many fields'
 
 
-        if patient_id == 'Select the patient visited':
-            app.error = missing_field
-        if location =='Select the location type of visit':
-            app.error = missing_field
-        if activity == "Select value of Patient's physical activity":
-            app.error == missing_field
-        if appetite == "Select value of Patient's appetite level":
-            app.error == missing_field
-        if birth == '':
-            app.error == missing_field
-        if city == '':
-            app.error == missing_field
-        if temp == '':
-            app.error == missing_field
-        if weight == '':
-            app.error == missing_field
+        if self.patient_id == 'Select the patient visited':
+            app.error = self.missing_field
+        if self.location =='Select the location type of visit':
+            app.error = self.missing_field
+        if self.activity == "Select value of Patient's physical activity":
+            app.error == self.missing_field
+        if self.appetite == "Select value of Patient's appetite level":
+            app.error == self.missing_field
+        if self.birth == '':
+            app.error == self.missing_field
+        if self.city == '':
+            app.error == self.missing_field
+        if self.temp == '':
+            app.error == self.missing_field
+        if self.weight == '':
+            app.error == self.missing_field
         else:
             app.error == 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
+
+
+
 
 
 
