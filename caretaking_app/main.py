@@ -24,20 +24,23 @@ class CareTakingApp(App):
     temperature = StringProperty('temperature')
     patient = StringProperty('Select the patient visited')
     error = StringProperty('')
+    patient_id = StringProperty('')
+
+
 
     def load(self):
         self.load_kv('caretaking.kv')
 
     def create_log(self):
-        patient_id = self.root.ids.patient_spinner.text
-        location = self.root.ids.location_type_spinner.text
-        activity = self.root.ids.physical_activity.text
-        appetite = self.root.ids.appetite.text
-        app.error = self.root.ids.submit.text
-        birth = self.root.ids.birthdate.text
-        city = self.root.ids.address.text
-        temp = self.root.ids.temp.text
-        weight = self.root.ids.weight.text
+        patient_id = self.root.ids.observation.ids.patient_spinner.text
+        location = self.root.ids.observation.ids.location_type_spinner.text
+        activity = self.root.ids.observation.ids.physical_activity.text
+        appetite = self.root.ids.observation.ids.appetite.text
+        app.error = self.root.ids.observation.ids.submit.text
+        birth = self.root.ids.observation.ids.birthdate.text
+        city = self.root.ids.observation.ids.address.text
+        temp = self.root.ids.observation.ids.temp.text
+        weight = self.root.ids.observation.ids.weight.text
         missing_field = 'You are missing one or many fields'
 
 
@@ -61,6 +64,10 @@ class CareTakingApp(App):
             app.error == 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
+
+
+
+
 
 
     def login_in(self):
