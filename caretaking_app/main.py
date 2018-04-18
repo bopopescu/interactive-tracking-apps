@@ -38,15 +38,13 @@ class CareTakingApp(App):
         temp = self.root.ids.temp.text
         weight = self.root.ids.weight.text
         missing_field = 'You are missing one or many fields'
-
-
         if patient_id == 'Select the patient visited':
             app.error = missing_field
-        if location =='Select the location type of visit':
+        if location == 'Select the location type of visit':
             app.error = missing_field
-        if activity == "Select value of Patient's physical activity":
+        if activity == 'Select value of Patient\'s physical activity':
             app.error == missing_field
-        if appetite == "Select value of Patient's appetite level":
+        if appetite == 'Select value of Patient\'s appetite level':
             app.error == missing_field
         if birth == '':
             app.error == missing_field
@@ -61,17 +59,17 @@ class CareTakingApp(App):
             self.root.transition.direction = 'left'
             self.root.current = 'review'
 
-
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
+
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
+
     def back_to_login(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
-
 
 
 if __name__ == '__main__':
