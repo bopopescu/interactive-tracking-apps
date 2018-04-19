@@ -25,39 +25,46 @@ class CareTakingApp(App):
     error = StringProperty('')
     patient_id = StringProperty('')
     birth = StringProperty('')
+    account_surname = StringProperty('')
+    account_given_name = StringProperty('')
+    account_patient_id = StringProperty('')
+    missing_field = StringProperty('')
 
     def load(self):
         self.load_kv('caretaking.kv')
 
+
+
     def create_log(self):
-        self.patient_id = self.root.ids.patient_spinner.text
-        self.location = self.root.ids.location_type_spinner.text
-        self.activity = self.root.ids.physical_activity.text
-        self.appetite = self.root.ids.appetite.text
-        self.app.error = self.root.ids.submit.text
-        self.birth = self.root.ids.birthdate.text
-        self.city = self.root.ids.address.text
-        self.temp = self.root.ids.temp.text
-        self.weight = self.root.ids.weight.text
+        self.patient_id = self.root.ids.observation.ids.patient_spinner.text
+        self.location = self.root.ids.observation.ids.location_type_spinner.text
+        self.activity = self.root.ids.observation.ids.physical_activity.text
+        self.appetite = self.root.ids.observation.ids.appetite.text
+        self.error = self.root.ids.observation.ids.submit.text
+        self.birth = self.root.ids.observation.ids.birthdate.text
+        self.city = self.root.ids.observation.ids.address.text
+        self.temp = self.root.ids.observation.ids.temp.text
+        self.weight = self.root.ids.observation.ids.weight.text
         self.missing_field = 'You are missing one or many fields'
-        if self.patient_id == 'Select the patient visited':
-            app.error = self.missing_field
+
+        if self.patient_id == '':
+            self.error = self.missing_field
         if self.location == 'Select the location type of visit':
-            app.error = self.missing_field
-        if self.activity == 'Select value of Patient\'s physical activity':
-            app.error == self.missing_field
-        if self.appetite == 'Select value of Patient\'s appetite level':
-            app.error == self.missing_field
+            self.error = self.missing_field
+        if self.activity == "Select value of Patient\'s physical activity":
+            self.error = self.missing_field
+        if self.appetite == "Select value of Patient\'s appetite level":
+            self.error = self.missing_field
         if self.birth == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         if self.city == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         if self.temp == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         if self.weight == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         else:
-            app.error == 'Log Completed'
+            self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
 
@@ -69,6 +76,10 @@ class CareTakingApp(App):
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
+        self.account_surname = self.root.ids.create_account.ids.surname.text
+        self.account_given_name = self.root.ids.create_account.ids.given_name.text
+        self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
+
 
     def back_to_login(self):
         self.root.transition.direction = 'left'
