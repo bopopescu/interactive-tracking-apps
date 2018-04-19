@@ -10,7 +10,7 @@ from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-from pain_tracking_app.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
+from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MultipleScreenApp(App):
@@ -65,16 +65,16 @@ class MultipleScreenApp(App):
             stomach = self.session.query(PainLocation).filter(PainLocation.body_location == 'Stomach').one()
             location_list = []
             severity_list = []
-            if arm_selected is True:
+            if arm_selected:
                 location_list.append(arm)
                 severity_list.append(int(self.root.ids.second.ids.arm_severity.text))
-            if head_selected is True:
+            if head_selected:
                 location_list.append(head)
                 severity_list.append(int(self.root.ids.second.ids.head_severity.text))
-            if leg_selected is True:
+            if leg_selected:
                 location_list.append(leg)
                 severity_list.append(int(self.root.ids.second.ids.leg_severity.text))
-            if stomach_selected is True:
+            if stomach_selected:
                 location_list.append(stomach)
                 severity_list.append(int(self.root.ids.second.ids.stomach_severity.text))
             pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
@@ -99,13 +99,13 @@ class MultipleScreenApp(App):
             ibuprofen = self.session.query(Medicine).filter(Medicine.medicine_type == 'Ibuprofen (mg)').one()
             med_list = []
             dosage_list = []
-            if acetyl_selected is True:
+            if acetyl_selected:
                 med_list.append(acetyl)
                 dosage_list.append(self.root.ids.third.ids.acetyl_comment.text)
-            if paracetamol_selected is True:
+            if paracetamol_selected:
                 med_list.append(paracetamol)
                 dosage_list.append(self.root.ids.third.ids.paracetamol_comment.text)
-            if ib_selected is True:
+            if ib_selected:
                 med_list.append(ibuprofen)
                 dosage_list.append(self.root.ids.third.ids.ibuprofen_comment.text)
             med_entry = MedicationEntry(time_stamp=datetime.now(), medicines=med_list)
@@ -130,7 +130,6 @@ class MultipleScreenApp(App):
         entry.dosage = dosage
         session.add(entry)
         session.commit()
-
 
 def main():
     try:

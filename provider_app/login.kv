@@ -4,39 +4,31 @@
         padding: '20sp'
         height: "5dp"
         Label:
-            text: 'Enter Patient ID'
+            text: 'Enter Username'
             pos_hint: {'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         TextInput:
-            id: patient_id
+            id: username
             pos_hint: {'center_x': .5, 'center_y': .5}
             size_hint: (.5, None)
             height: '30sp'
-            hint_text : 'ID'
+            hint_text : 'Username'
         Label:
-            text: 'Enter Patient Surname'
+            text: 'Enter Password'
             pos_hint: {'center_x': .5, 'center_y': .5}
             color: (0,0,.75,1)
         TextInput:
-            id: surname
+            id: password
             pos_hint: {'center_x': .5, 'center_y': .5}
             size_hint: (.5, None)
             height: '30sp'
-            hint_text : 'Surname'
+            hint_text : 'Password'
         Label:
-            text: 'Enter Patient First Name'
-            pos_hint: {'center_x': .5, 'center_y': .5}
-            color: (0,0,.75,1)
-        TextInput:
-            id: first_name
-            pos_hint: {'center_x': .5, 'center_y': .5}
-            size_hint: (.5, None)
-            height: '30sp'
-            hint_text : 'First Name'
+            id:
         Button:
             text: 'Submit'
             color: (1,0,0,1)
-            on_press:
+            on_press: app.user_login(root.username, root.password)
 
 <Screen>:
     canvas.before:
