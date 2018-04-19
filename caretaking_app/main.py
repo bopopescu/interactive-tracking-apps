@@ -28,8 +28,7 @@ class CareTakingApp(App):
     account_surname = StringProperty('')
     account_given_name = StringProperty('')
     account_patient_id = StringProperty('')
-
-
+    missing_field = StringProperty('')
 
     def load(self):
         self.load_kv('caretaking.kv')
@@ -48,32 +47,31 @@ class CareTakingApp(App):
         self.weight = self.root.ids.observation.ids.weight.text
         self.missing_field = 'You are missing one or many fields'
 
-
-        if self.patient_id == 'Select the patient visited':
-            app.error = self.missing_field
-        if self.location =='Select the location type of visit':
-            app.error = self.missing_field
-        if self.activity == "Select value of Patient's physical activity":
-            app.error == self.missing_field
-        if self.appetite == "Select value of Patient's appetite level":
-            app.error == self.missing_field
+        if self.patient_id == '':
+            self.error = self.missing_field
+        if self.location == 'Select the location type of visit':
+            self.error = self.missing_field
+        if self.activity == "Select value of Patient\'s physical activity":
+            self.error = self.missing_field
+        if self.appetite == "Select value of Patient\'s appetite level":
+            self.error = self.missing_field
         if self.birth == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         if self.city == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         if self.temp == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         if self.weight == '':
-            app.error == self.missing_field
+            self.error = self.missing_field
         else:
-            app.error == 'Log Completed'
+            self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
-
 
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
+
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
@@ -81,10 +79,10 @@ class CareTakingApp(App):
         self.account_given_name = self.root.ids.create_account.ids.given_name.text
         self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
 
+
     def back_to_login(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
-
 
 
 if __name__ == '__main__':

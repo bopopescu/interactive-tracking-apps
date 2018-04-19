@@ -88,7 +88,7 @@ class MultipleScreenApp(App):
             print('Cause: {exception}'.format(exception=exception), file=stderr)
             self.root.ids.second.ids.report_entry.text = 'Couldn\'t connect to the database'
         except MultipleResultsFound:
-            print('Can not create multiple results found')
+            print('Can not create, multiple results found')
         except NoResultFound:
             print('No results found')
 
