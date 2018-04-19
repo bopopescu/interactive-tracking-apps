@@ -25,11 +25,16 @@ class CareTakingApp(App):
     error = StringProperty('')
     patient_id = StringProperty('')
     birth = StringProperty('')
+    account_surname = StringProperty('')
+    account_given_name = StringProperty('')
+    account_patient_id = StringProperty('')
 
 
 
     def load(self):
         self.load_kv('caretaking.kv')
+
+
 
     def create_log(self):
         self.patient_id = self.root.ids.observation.ids.patient_spinner.text
@@ -66,19 +71,16 @@ class CareTakingApp(App):
             self.root.current = 'review'
 
 
-
-
-
-
-
-
-
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
+        self.account_surname = self.root.ids.create_account.ids.surname.text
+        self.account_given_name = self.root.ids.create_account.ids.given_name.text
+        self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
+
     def back_to_login(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
