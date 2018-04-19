@@ -10,7 +10,7 @@ from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
+from pain_tracking_app.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MultipleScreenApp(App):
@@ -26,7 +26,7 @@ class MultipleScreenApp(App):
         self.root.current = 'third'
 
     def open_pain_entry_screen(self):
-        self.root.transition.direction = 'left'
+        self.root.transition.direction = 'right'
         self.root.current = 'second'
 
     def open_choosing_entry(self):

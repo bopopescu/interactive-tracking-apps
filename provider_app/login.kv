@@ -24,11 +24,13 @@
             height: '30sp'
             hint_text : 'Password'
         Label:
-            id:
+            id: error_message
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            color: (0,0,.75,1)
         Button:
             text: 'Submit'
             color: (1,0,0,1)
-            on_press: app.user_login(root.username, root.password)
+            on_press: app.user_login(username.text, password.text)
 
 <Screen>:
     canvas.before:
