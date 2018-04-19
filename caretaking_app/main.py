@@ -4,6 +4,10 @@ from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 
 # noinspection PyUnresolvedReferences
+from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
+from sqlalchemy.sql.functions import user
+
+from database import Patient, User, Observation, CombinedDatabase
 from login_screen import LoginScreen
 # noinspection PyUnresolvedReferences
 from input_screen import ObservationEntry
@@ -30,10 +34,14 @@ class CareTakingApp(App):
     account_patient_id = StringProperty('')
     missing_field = StringProperty('')
 
+    def __init__(self, **kwargs):
+        super(CareTakingApp, self).__init__(**kwargs)
+        url = CombinedDatabase.construct_mysql_url('mysql.poetical-science.org', 3306, 'soft161_team_6', 'soft161_team_6', 'chromosome+differentiates<')
+        self.care_tracking_database = CombinedDatabase(url)
+        self.session = self.care_tracking_database.create_session()
+
     def load(self):
         self.load_kv('caretaking.kv')
-
-
 
     def create_log(self):
         self.patient_id = self.root.ids.observation.ids.patient_spinner.text
@@ -72,7 +80,6 @@ class CareTakingApp(App):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
 
-
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
@@ -80,11 +87,34 @@ class CareTakingApp(App):
         self.account_given_name = self.root.ids.create_account.ids.given_name.text
         self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
 
-
     def back_to_login(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
 
+    def _submit_entry(self):
+        user = User(surname = self.root.ids.observation.ids.patient_spinner.text)
+        patient = Patient(name = self.root.ids.observation.ids.patient_spinner.text, user=user)
+        observation = Observation(location = self.root.ids.observation.ids.location_type_spinner.text,\
+                                  activity = self.root.ids.observation.ids.physical_activity.text,\
+                                  appetite = self.root.ids.observation.ids.appetite.text,\
+                                  birth_date = self.root.ids.observation.ids.birthdate.text,\
+                                  city = self.root.ids.observation.ids.address.text,\
+                                  temperature = self.root.ids.observation.ids.temp.text,\
+                                  weight = self.root.ids.observation.ids.address.text,\
+                                  patient = patient)
+        try:
+            self.session.add(user)
+            self.session.add(patient)
+            self.session.add(observation)
+            self.session.commit()
+        except SQLAlchemyError as exception:
+            print('Database setup failed!', file=stderr)
+            print('Cause: {exception}'.format(exception=exception), file=stderr)
+            self.root.ids.second.ids.report_entry.text = 'Couldn\'t connect to the database'
+        except MultipleResultsFound:
+            print('Can not create, multiple results found')
+        except NoResultFound:
+            print('No results found')
 
 
 if __name__ == '__main__':
