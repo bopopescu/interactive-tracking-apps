@@ -26,31 +26,27 @@ class CareTakingApp(App):
     patient_id = StringProperty('')
     birth = StringProperty('')
 
-
-
     def load(self):
         self.load_kv('caretaking.kv')
 
     def create_log(self):
-        self.patient_id = self.root.ids.observation.ids.patient_spinner.text
-        self.location = self.root.ids.observation.ids.location_type_spinner.text
-        self.activity = self.root.ids.observation.ids.physical_activity.text
-        self.appetite = self.root.ids.observation.ids.appetite.text
-        self.error = self.root.ids.observation.ids.submit.text
-        self.birth = self.root.ids.observation.ids.birthdate.text
-        self.city = self.root.ids.observation.ids.address.text
-        self.temp = self.root.ids.observation.ids.temp.text
-        self.weight = self.root.ids.observation.ids.weight.text
+        self.patient_id = self.root.ids.patient_spinner.text
+        self.location = self.root.ids.location_type_spinner.text
+        self.activity = self.root.ids.physical_activity.text
+        self.appetite = self.root.ids.appetite.text
+        self.app.error = self.root.ids.submit.text
+        self.birth = self.root.ids.birthdate.text
+        self.city = self.root.ids.address.text
+        self.temp = self.root.ids.temp.text
+        self.weight = self.root.ids.weight.text
         self.missing_field = 'You are missing one or many fields'
-
-
         if self.patient_id == 'Select the patient visited':
             app.error = self.missing_field
-        if self.location =='Select the location type of visit':
+        if self.location == 'Select the location type of visit':
             app.error = self.missing_field
-        if self.activity == "Select value of Patient's physical activity":
+        if self.activity == 'Select value of Patient\'s physical activity':
             app.error == self.missing_field
-        if self.appetite == "Select value of Patient's appetite level":
+        if self.appetite == 'Select value of Patient\'s appetite level':
             app.error == self.missing_field
         if self.birth == '':
             app.error == self.missing_field
@@ -66,6 +62,7 @@ class CareTakingApp(App):
             self.root.current = 'review'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -76,16 +73,19 @@ class CareTakingApp(App):
 
 
 >>>>>>> 67c10639ed2f9533cde118ef5a8bb4df1ead33ac
+=======
+>>>>>>> 35de4643979035bc9ab93672b931ceb8555e2588
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
+
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
+
     def back_to_login(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
-
 
 
 if __name__ == '__main__':
