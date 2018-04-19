@@ -30,6 +30,8 @@
         Button:
             text: 'Save'
             on_press: app.save_medication(acetyl.active, paracetamol.active, ibuprofen.active)
+            size_hint: (.5, .5)
+
         BoxLayout:
             orientation: 'horizontal'
             Label:
@@ -38,6 +40,8 @@
             Button:
                 text: 'Another Entry'
                 on_press: app.open_choosing_entry()
+                size_hint: (.5, .5)
+
 # All screens are white.
 <Screen>:
     canvas.before:
@@ -64,3 +68,7 @@
 # All buttons have white text.
 <Button>:
     color: (1, 1, 1, 1)
+
+<TextInput>:
+    size_hint: (1, .5)
+

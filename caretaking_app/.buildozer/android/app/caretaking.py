@@ -34,7 +34,7 @@ class Observation(Persisted):
     temperature = Column(String(256))
     date_time = Column(DateTime)
     log = relationship('CareLog', back_populates ='observations')
-    patient = relationship('Patient', back_populates = 'observations' )
+    patient = relationship('Patient', back_populates = 'observations')
 
 
 
