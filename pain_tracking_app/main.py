@@ -26,7 +26,7 @@ class MultipleScreenApp(App):
         self.root.current = 'third'
 
     def open_pain_entry_screen(self):
-        self.root.transition.direction = 'left'
+        self.root.transition.direction = 'right'
         self.root.current = 'second'
 
     def open_choosing_entry(self):
