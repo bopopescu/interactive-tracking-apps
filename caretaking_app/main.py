@@ -65,6 +65,7 @@ class CareTakingApp(App):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
 
+
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
