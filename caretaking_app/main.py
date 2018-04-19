@@ -61,6 +61,20 @@ class CareTakingApp(App):
             self.root.transition.direction = 'left'
             self.root.current = 'review'
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+>>>>>>> 67c10639ed2f9533cde118ef5a8bb4df1ead33ac
+=======
+>>>>>>> 35de4643979035bc9ab93672b931ceb8555e2588
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'observation'

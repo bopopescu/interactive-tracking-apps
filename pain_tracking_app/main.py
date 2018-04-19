@@ -131,7 +131,6 @@ class MultipleScreenApp(App):
         session.add(entry)
         session.commit()
 
-
 def main():
     try:
         app = MultipleScreenApp()
