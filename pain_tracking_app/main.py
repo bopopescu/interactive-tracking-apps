@@ -10,7 +10,7 @@ from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
 
-from pain_tracking_app.database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
+from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MultipleScreenApp(App):
