@@ -6,9 +6,12 @@
         Button:
             text: 'Pain'
             on_press: app.open_pain_entry_screen()
+            size_hint: (.5, .5)
+
         Button:
             text: 'Medication'
             on_press: app.open_medication_entry_screen()
+            size_hint: (.5, .5)
 
 # All screens are white.
 <Screen>:
@@ -22,6 +25,8 @@
 # All labels are blue.
 <Label>:
     color: (0, 0, 0.75, 1)
+    pos_hint: {'center_x': .5, 'center_y': .5}
+
 
 # All checkboxes are blue.
 <CheckBox>:
@@ -36,3 +41,4 @@
 # All buttons have white text.
 <Button>:
     color: (1, 1, 1, 1)
+
