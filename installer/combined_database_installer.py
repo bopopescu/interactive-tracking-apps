@@ -4,21 +4,21 @@ from __future__ import print_function
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime
 
-from installer.database import CareLog, Observation, PainLocation, Medicine, CombinedDatabase
+from database import CareLog, Observation, PainLocation, Medicine, CombinedDatabase, Patient
 
 
 def add_starter_data(session):
-
-    from installer.database import Patient
     jon_smith = Patient(name='Jon Smith')
     session.add(jon_smith)
     robert_kennedy = Patient(name='Robert Kennedy')
     session.add(robert_kennedy)
     george_washington=Patient(name='George Washington')
     session.add(george_washington)
+    ada_lovelace = Patient(name='Ada Lovelace')
+    session.add(ada_lovelace)
 
     care_log = CareLog()
-    jon_obs = Observation(patient= jon_smith, log=care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
+    jon_obs = Observation(patient= jon_smith, log=care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
     session.add(jon_obs)
 
     care_log1 = CareLog()
@@ -26,8 +26,12 @@ def add_starter_data(session):
     session.add(robert)
 
     care_log2 = CareLog()
-    george = Observation(patient= george_washington, log=care_log2,location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
+    george = Observation(patient= george_washington, log=care_log2, location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
     session.add(george)
+
+    care_log3 = CareLog()
+    ada = Observation(patient=ada_lovelace, log=care_log3, location='Patient Home', activity='3-Sometimes Active', appetite='4-Healthy', birth_date='12/10/1915', city='Omaha', weight='99', temperature='97', date_time=datetime(2016, 11, 22, 13, 10, 12, 12))
+    session.add(ada)
 
     arm_location = PainLocation(body_location='Arm')
     leg_location = PainLocation(body_location='Leg')
