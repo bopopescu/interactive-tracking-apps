@@ -1,0 +1,32 @@
+<PatientScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Please select a patient:'
+            size_hint_y: .20
+        Label:
+            id: failure_message
+            size_hint_y: .10
+            text_size: self.size
+            halign: 'center'
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                id: patients
+                Label:
+                    text: 'Patient name'
+        BoxLayout:
+            Button:
+                text: 'Logout'
+                size_hint: .25, .25
+                on_press: app.user_logout()
+            Widget:
+
+
+# All labels are blue.
+<Label>:
+    color: (0, 0, 0.75, 1)
+
+# All buttons have white text.
+<Button>:
+    color: (1, 1, 1, 1)
