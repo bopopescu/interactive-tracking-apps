@@ -87,8 +87,6 @@ class CareTakingApp(App):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
 
-
-
     def back_to_login(self):
         self.account_surname = self.root.ids.create_account.ids.surname.text
         self.account_given_name = self.root.ids.create_account.ids.given_name.text
@@ -104,7 +102,7 @@ class CareTakingApp(App):
 
     def _submit_entry(self):
         user = User(surname = self.root.ids.observation.ids.patient_spinner.text, given_name=self.root.ids.observation.ids.patient_spinner.text)
-        patient = Patient(name = self.root.ids.observation.ids.patient_spinner.text, user=user)
+        patient = Patient(name = self.root.ids.observation.ids.patient_spinner.text, user_id = user.user_id)
         observation = Observation(location = self.root.ids.observation.ids.location_type_spinner.text,\
                                   activity = self.root.ids.observation.ids.physical_activity.text,\
                                   appetite = self.root.ids.observation.ids.appetite.text,\
@@ -118,6 +116,7 @@ class CareTakingApp(App):
             self.session.add(patient)
             self.session.add(observation)
             self.session.commit()
+            print('Successful')
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
