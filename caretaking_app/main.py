@@ -30,6 +30,7 @@ class CareTakingApp(App):
     account_patient_id = StringProperty('')
     missing_field = StringProperty('')
     username = StringProperty('')
+    verification = StringProperty('')
 
 
     def load(self):
@@ -79,16 +80,22 @@ class CareTakingApp(App):
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
-        self.account_surname = self.root.ids.create_account.ids.surname.text
-        self.account_given_name = self.root.ids.create_account.ids.given_name.text
-        self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
-        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+
 
 
 
     def back_to_login(self):
-        self.root.transition.direction = 'left'
-        self.root.current = 'login'
+        self.account_surname = self.root.ids.create_account.ids.surname.text
+        self.account_given_name = self.root.ids.create_account.ids.given_name.text
+        self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
+        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+        self.verification = self.root.ids.create_account.ids.account_verification.text
+        if(self.account_surname == '' or self.account_given_name == '' or self.account_patient_id == ''):
+            self.verfication = 'You are missing one or many fields'
+        
+        else:
+            self.root.transition.direction = 'left'
+            self.root.current = 'login'
 
 
 if __name__ == '__main__':
