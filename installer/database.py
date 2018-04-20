@@ -84,7 +84,8 @@ class User(Persisted):
     __tablename__ = 'users'
     user_id = Column(Integer, primary_key=True)
     surname = Column(String(256), nullable=False)
-    given_name = Column(String(256), nullable=False)
+    #TODO make given_name nullable.
+    given_name = Column(String(256))
     patient = relationship('Patient', back_populates='user')
 
 

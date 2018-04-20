@@ -92,7 +92,7 @@ class CareTakingApp(App):
         self.root.current = 'login'
 
     def _submit_entry(self):
-        user = User(surname = self.root.ids.observation.ids.patient_spinner.text)
+        user = User(surname = self.root.ids.observation.ids.patient_spinner.text, given_name=self.root.ids.observation.ids.patient_spinner.text)
         patient = Patient(name = self.root.ids.observation.ids.patient_spinner.text, user=user)
         observation = Observation(location = self.root.ids.observation.ids.location_type_spinner.text,\
                                   activity = self.root.ids.observation.ids.physical_activity.text,\
@@ -110,7 +110,6 @@ class CareTakingApp(App):
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
             print('Cause: {exception}'.format(exception=exception), file=stderr)
-            self.root.ids.second.ids.report_entry.text = 'Couldn\'t connect to the database'
         except MultipleResultsFound:
             print('Can not create, multiple results found')
         except NoResultFound:
