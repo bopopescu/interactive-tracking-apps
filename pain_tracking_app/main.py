@@ -80,8 +80,8 @@ class MultipleScreenApp(App):
             pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
             self.session.add(pain_entry)
             self.session.commit()
-            for x in range(len(location_list)):
-                self._pain_entry_severity(self.session, pain_entry, location_list[x], severity_list[x])
+            for location in range(len(location_list)):
+                self._pain_entry_severity(self.session, pain_entry, location_list[location], severity_list[location])
             self.root.ids.second.ids.report_entry.text = 'Entry Saved'
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
@@ -111,8 +111,8 @@ class MultipleScreenApp(App):
             med_entry = MedicationEntry(time_stamp=datetime.now(), medicines=med_list)
             self.session.add(med_entry)
             self.session.commit()
-            for y in range(len(med_list)):
-                self._medication_entry_dosage(self.session, med_entry, med_list[y], dosage_list[y])
+            for medication in range(len(med_list)):
+                self._medication_entry_dosage(self.session, med_entry, med_list[medication], dosage_list[medication])
             self.root.ids.third.ids.report_entry.text = 'Entry Saved'
         except SQLAlchemyError as exception:
             print('Database setup failed!', file=stderr)
