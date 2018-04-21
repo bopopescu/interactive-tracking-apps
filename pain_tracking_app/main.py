@@ -1,4 +1,6 @@
 from kivy.app import App
+from kivy.properties import StringProperty
+from kivy.storage.jsonstore import JsonStore
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
@@ -11,21 +13,32 @@ from choosing_entry import ChoosingEntry
 from pain_entry import PainEntryScreen
 # noinspection PyUnresolvedReferences
 from login_screen import LoginScreen
+# noinspection PyUnresolvedReferences
+from create_account import CreateAccount
+
 
 from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MultipleScreenApp(App):
+    verification = StringProperty('')
+
 
     def __init__(self, **kwargs):
         super(MultipleScreenApp, self).__init__(**kwargs)
         url = CombinedDatabase.construct_mysql_url('mysql.poetical-science.org', 3306, 'soft161_team_6', 'soft161_team_6', 'chromosome+differentiates<')
         self.pain_tracking_database = CombinedDatabase(url)
         self.session = self.pain_tracking_database.create_session()
+        self.store = JsonStore('users.json')
+
 
     def login_in(self):
         self.root.transition.direction = 'left'
         self.root.current = 'first'
+
+    def create_account(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'create_account'
 
     def open_medication_entry_screen(self):
         self.root.transition.direction = 'right'
@@ -34,6 +47,19 @@ class MultipleScreenApp(App):
     def open_pain_entry_screen(self):
         self.root.transition.direction = 'right'
         self.root.current = 'second'
+
+    def back_to_login(self):
+        self.account_surname = self.root.ids.create_account.ids.surname.text
+        self.account_given_name = self.root.ids.create_account.ids.given_name.text
+        self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
+        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+        self.verification = self.root.ids.create_account.ids.account_verification.text
+        self.missing_field = 'You are missing one or many fields'
+        if self.account_surname == '' or self.account_given_name == '' or self.account_patient_id == '':
+            self.verification = self.missing_field
+        else:
+            self.root.transition.direction = 'left'
+            self.root.current = 'login'
 
     def open_choosing_entry(self):
         self.root.transition.direction = 'right'
@@ -136,6 +162,31 @@ class MultipleScreenApp(App):
         entry.dosage = dosage
         session.add(entry)
         session.commit()
+
+
+    def _load_state(self):
+        try:
+            users = []
+            keys = self.store.keys()
+            for user in keys:
+                users.append(self.store.get(user))
+            print(users)
+        except KeyError:
+            pass
+
+    def _save_state(self):
+        #self.store[str(self.account_patient_id)] = {'username': self.username}
+        self.store.put(str(self.account_patient_id), given_name = self.account_given_name, surname = self.account_surname)
+    def on_start(self):
+        self._load_state()
+
+    def on_pause(self):
+        self._save_state()
+        return True
+
+    def on_stop(self):
+        self._save_state()
+
 
 
 def main():
