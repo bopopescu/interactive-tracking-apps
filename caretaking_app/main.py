@@ -90,9 +90,9 @@ class CareTakingApp(App):
         self.account_patient_id = self.root.ids.create_account.ids.patient_id.text
         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
         self.verification = self.root.ids.create_account.ids.account_verification.text
-        if(self.account_surname == '' or self.account_given_name == '' or self.account_patient_id == ''):
-            self.verfication = 'You are missing one or many fields'
-        
+        self.missing_field = 'You are missing one or many fields'
+        if self.account_surname == '':
+            self.verification = self.missing_field
         else:
             self.root.transition.direction = 'left'
             self.root.current = 'login'
