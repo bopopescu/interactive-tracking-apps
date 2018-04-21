@@ -9,6 +9,8 @@ from medication_entry import MedicationEntryScreen
 from choosing_entry import ChoosingEntry
 # noinspection PyUnresolvedReferences
 from pain_entry import PainEntryScreen
+# noinspection PyUnresolvedReferences
+from login_screen import LoginScreen
 
 from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, MedicationEntryDosage
 
@@ -20,6 +22,10 @@ class MultipleScreenApp(App):
         url = CombinedDatabase.construct_mysql_url('mysql.poetical-science.org', 3306, 'soft161_team_6', 'soft161_team_6', 'chromosome+differentiates<')
         self.pain_tracking_database = CombinedDatabase(url)
         self.session = self.pain_tracking_database.create_session()
+
+    def login_in(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'first'
 
     def open_medication_entry_screen(self):
         self.root.transition.direction = 'right'
