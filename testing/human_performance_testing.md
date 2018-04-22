@@ -22,4 +22,9 @@ Task B. Pain Tracking App:
 
 Human Performance Testing (HPT) Review:
     During our HPT during lab our group was able to identify many bugs and issues within our program as
-well as a better understanding of the specifications.
+well as a better understanding of the specifications.  To begin, we found a bug where the user can login without selecting
+or creating an account.  Furthermore, our error messages were not displaying because we were using multiple screens and
+did not specific the id of each screen. One question that we had answered during the HPT was the review screen.
+Our initial thought was that the user was a able to review the entries before querying to the database. We discovered that
+the review screen should display all the past entries in chronological order. All in all, the HPT was extremely
+valuable in that we were able to identify many issues.
