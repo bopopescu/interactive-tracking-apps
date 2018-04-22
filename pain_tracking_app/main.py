@@ -88,7 +88,7 @@ class MultipleScreenApp(App):
         entry.severity = severity
         session.add(entry)
         session.commit()
-
+    # Queries each pain entry to the database
     def pain_entry(self, head_selected, arm_selected, stomach_selected, leg_selected):
         try:
             arm = self.session.query(PainLocation).filter(PainLocation.body_location == 'Arm').one()
@@ -123,7 +123,7 @@ class MultipleScreenApp(App):
             print('Can not create, multiple results found')
         except NoResultFound:
             print('No results found')
-
+    # Queries medication entries to the database;
     def save_medication(self, acetyl_selected, paracetamol_selected, ib_selected):
         try:
             acetyl = self.session.query(Medicine).filter(Medicine.medicine_type == 'Acetylsalicylic (mg)').one()

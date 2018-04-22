@@ -47,6 +47,7 @@ class CareTakingApp(App):
     def load(self):
         self.load_kv('caretaking.kv')
 
+    #create log checks if the user has inputed vaild values and verifies their confirmation
     def create_log(self):
         self.patient_id = self.root.ids.observation.ids.patient_spinner.text
         self.location = self.root.ids.observation.ids.location_type_spinner.text
@@ -79,6 +80,7 @@ class CareTakingApp(App):
             self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
+
     def main_menu(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
@@ -92,6 +94,8 @@ class CareTakingApp(App):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
 
+    # back to login makes sure when the user creates an account that they have inputted
+    # valid information
     def back_to_login(self):
         self.account_surname = self.root.ids.create_account.ids.surname.text
         self.account_given_name = self.root.ids.create_account.ids.given_name.text
@@ -105,6 +109,7 @@ class CareTakingApp(App):
             self.root.transition.direction = 'left'
             self.root.current = 'login'
 
+    # submit entry queries each observation, patient and user into the database
     def _submit_entry(self):
         user = User(surname = self.root.ids.observation.ids.patient_spinner.text, given_name=self.root.ids.observation.ids.patient_spinner.text)
         patient = Patient(name = self.root.ids.observation.ids.patient_spinner.text, user_id = user.user_id)
