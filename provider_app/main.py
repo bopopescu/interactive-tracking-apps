@@ -36,6 +36,7 @@ class ProviderApp(App):
     def user_logout(self):
         self.root.transition.direction = 'right'
         self.root.current = 'login'
+        self.root.ids.select_patient.ids.patients.clear_widgets()
 
     def select_patient(self):
         self.root.transition.direction = 'right'
@@ -60,15 +61,16 @@ class ProviderApp(App):
 
     def load_patients(self):
         users = self.session.query(User).all()
-        for x in range(len(users)):
-            new_user = Button(text='{firstname} {lastname}'.format(firstname=users[x].given_name, lastname=users[x].surname),
-                              on_press=lambda y: self.load_openmrs_data(users[x].user_id))
+        for user in users:
+            new_user = Button(text='{firstname} {lastname}'.format(firstname=user.given_name,
+                                                                   lastname=user.surname),
+                              command=self.load_openmrs_data(user.user_id))
             self.root.ids.select_patient.ids.patients.add_widget(new_user)
 
     def load_openmrs_data(self, user_id):
         self.root.transition.direction = 'left'
         self.root.current = 'review'
-        print(user_id)
+        self.root.ids.review.ids.patients.clear_widgets()
         self.openmrs_connection.send_request('patient', None, self.on_openmrs_data_loaded,
                                              self.on_openmrs_data_not_loaded,
                                              self.on_openmrs_data_error, 'q={user_id}&v=full'.format(user_id=user_id))
@@ -77,7 +79,7 @@ class ProviderApp(App):
         print(response)
         new_observation = self.root.ids.review.ids.patients
         for result in response['results']:
-            new_observation.add_widget(Label(text='{name}'.format(name=result['names'])))
+            new_observation.add_widget(Label(text='{start}-{stop}'.format(start=result['startDateTime'], stop=result['stopDateTime'])))
 
     def on_openmrs_data_not_loaded(self, _, error):
         self.root.ids.select_patient.ids.failure_message.text = 'Failed to load patient data. Retest OpenMRS connection.'
