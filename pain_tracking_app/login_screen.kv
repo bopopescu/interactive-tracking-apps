@@ -1,0 +1,22 @@
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: '20sp'
+        height: "5dp"
+        Label:
+            text: 'Sign In Screen'
+        Label:
+            text:'Sign in'
+        Spinner:
+            orientation:'horizontal'
+            id: accounts
+            text: "Select your account"
+            values: ()
+            size_hint: (1, None)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+        Button:
+            text: 'Login in'
+            on_press: app.login_in()
+        Button:
+            text: 'Create an Account'
+            on_press:app.create_account()

@@ -1,8 +1,8 @@
 import unittest
 from soft161_milestone_2.pain_tracking_app.main import MultipleScreenApp
-from soft161_milestone_2.pain_tracking_app.tables import PainMedicationDatabase
+from tables import PainMedicationDatabase
 from datetime import datetime
-from soft161_milestone_2.installer.database import PainEntry, PainLocation, PainEntryLocation
+from database import PainEntry, PainLocation, PainEntryLocation
 
 
 class MyTestCase(unittest.TestCase):

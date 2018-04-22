@@ -7,4 +7,3 @@ Builder.load_file('login_screen.kv')
 
 class LoginScreen(Screen):
     pass
-
