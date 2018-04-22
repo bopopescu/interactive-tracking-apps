@@ -37,7 +37,6 @@ class CareTakingApp(App):
     verification = StringProperty('')
     failed = StringProperty('')
 
-
     def __init__(self, **kwargs):
         super(CareTakingApp, self).__init__(**kwargs)
         url = CombinedDatabase.construct_mysql_url('mysql.poetical-science.org', 3306, 'soft161_team_6', 'soft161_team_6', 'chromosome+differentiates<')
