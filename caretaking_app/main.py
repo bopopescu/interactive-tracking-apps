@@ -35,6 +35,8 @@ class CareTakingApp(App):
     missing_field = StringProperty('')
     username = StringProperty('')
     verification = StringProperty('')
+    failed = StringProperty('')
+    account_verification = StringProperty('')
 
     def __init__(self, **kwargs):
         super(CareTakingApp, self).__init__(**kwargs)
@@ -45,6 +47,7 @@ class CareTakingApp(App):
     def load(self):
         self.load_kv('caretaking.kv')
 
+    #create log checks if the user has inputed vaild values and verifies their confirmation
     def create_log(self):
         self.patient_id = self.root.ids.observation.ids.patient_spinner.text
         self.location = self.root.ids.observation.ids.location_type_spinner.text
@@ -78,14 +81,25 @@ class CareTakingApp(App):
             self.root.transition.direction = 'left'
             self.root.current = 'review'
 
-    def login_in(self):
+    def main_menu(self):
         self.root.transition.direction = 'left'
-        self.root.current = 'observation'
+        self.root.current = 'login'
+
+    def login_in(self):
+        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+        self.account_verification = self.root.ids.login.ids.account_verification.text
+        if self.root.ids.login.ids.accounts.text == "Select your account":
+            self.account_verification = 'You must select an account to login or create an account'
+        else:
+            self.root.transition.direction = 'left'
+            self.root.current = 'observation'
 
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create account'
 
+    # back to login makes sure when the user creates an account that they have inputted
+    # valid information
     def back_to_login(self):
         self.account_surname = self.root.ids.create_account.ids.surname.text
         self.account_given_name = self.root.ids.create_account.ids.given_name.text
@@ -99,6 +113,7 @@ class CareTakingApp(App):
             self.root.transition.direction = 'left'
             self.root.current = 'login'
 
+    # submit entry queries each observation, patient and user into the database
     def _submit_entry(self):
         user = User(surname = self.root.ids.observation.ids.patient_spinner.text, given_name=self.root.ids.observation.ids.patient_spinner.text)
         patient = Patient(name = self.root.ids.observation.ids.patient_spinner.text, user_id = user.user_id)
@@ -123,6 +138,9 @@ class CareTakingApp(App):
             print('Can not create, multiple results found')
         except NoResultFound:
             print('No results found')
+
+
+
 
 
 if __name__ == '__main__':
