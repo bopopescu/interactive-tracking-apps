@@ -36,6 +36,7 @@ class CareTakingApp(App):
     username = StringProperty('')
     verification = StringProperty('')
     failed = StringProperty('')
+    account_verification = StringProperty('')
 
     def __init__(self, **kwargs):
         super(CareTakingApp, self).__init__(**kwargs)
@@ -89,6 +90,9 @@ class CareTakingApp(App):
 
     def login_in(self):
         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+        self.account_verification = self.root.ids.login.ids.
+        if self.root.ids.login.ids.accounts.text == "Select your account":
+
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
 
