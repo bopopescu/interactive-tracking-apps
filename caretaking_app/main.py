@@ -35,6 +35,7 @@ class CareTakingApp(App):
     missing_field = StringProperty('')
     username = StringProperty('')
     verification = StringProperty('')
+    failed = StringProperty('')
 
 
     def __init__(self, **kwargs):
@@ -78,8 +79,12 @@ class CareTakingApp(App):
             self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
+    def main_menu(self):
+        self.root.transition.direction = 'left'
+        self.root.current = 'login'
 
     def login_in(self):
+        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
         self.root.transition.direction = 'left'
         self.root.current = 'observation'
 
@@ -124,6 +129,9 @@ class CareTakingApp(App):
             print('Can not create, multiple results found')
         except NoResultFound:
             print('No results found')
+
+
+
 
 
 if __name__ == '__main__':
