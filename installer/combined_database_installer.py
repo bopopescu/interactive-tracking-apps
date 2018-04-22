@@ -4,7 +4,7 @@ from __future__ import print_function
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime
 
-from database import CareLog, Observation, PainLocation, Medicine, CombinedDatabase, Patient
+from database import CareLog, Observation, PainLocation, Medicine, CombinedDatabase, Patient, User
 
 
 def add_starter_data(session):
@@ -14,8 +14,10 @@ def add_starter_data(session):
     session.add(robert_kennedy)
     george_washington=Patient(name='George Washington')
     session.add(george_washington)
-    ada_lovelace = Patient(name='Ada Lovelace')
+    ada_lovelace = User(given_name='Ada', surname='Lovelace', user_id='10001V')
     session.add(ada_lovelace)
+    charles_babbage = User(given_name='Charles', surname='Babbage', user_id='10002T')
+    session.add(charles_babbage)
 
     care_log = CareLog()
     jon_obs = Observation(patient= jon_smith, log=care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
@@ -25,13 +27,13 @@ def add_starter_data(session):
     robert = Observation(patient= robert_kennedy, log=care_log1, location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
     session.add(robert)
 
-    care_log2 = CareLog()
-    george = Observation(patient= george_washington, log=care_log2, location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
-    session.add(george)
-
-    care_log3 = CareLog()
-    ada = Observation(patient=ada_lovelace, log=care_log3, location='Patient Home', activity='3-Sometimes Active', appetite='4-Healthy', birth_date='12/10/1915', city='Omaha', weight='99', temperature='97', date_time=datetime(2016, 11, 22, 13, 10, 12, 12))
-    session.add(ada)
+    # care_log2 = CareLog()
+    # ada = Observation(patient=ada_lovelace, log=care_log2, location='Patient Home', activity='3-Sometimes Active', appetite='4-Healthy', birth_date='12/10/1915', city='Omaha', weight='99', temperature='97', date_time=datetime(2016, 11, 22, 13, 10, 12, 12))
+    # session.add(ada)
+    #
+    # care_log3 = CareLog()
+    # charles = Observation(patient=charles_babbage, log=care_log3, location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
+    # session.add(charles)
 
     arm_location = PainLocation(body_location='Arm')
     leg_location = PainLocation(body_location='Leg')

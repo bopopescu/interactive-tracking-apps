@@ -4,4 +4,19 @@
         Label:
             text: 'Patient Observation(s)'
         BoxLayout:
-            id: observations
+            Label:
+                text: 'Visit times:'
+            Label:
+                text: 'App Entries'
+            Label:
+                text: 'Patient-provider encounters during the visit'
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                id: patients
+        BoxLayout:
+            Button:
+                text: 'Back'
+                size_hint: .25, .25
+                on_press: app.select_patient()
+            Widget:

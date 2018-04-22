@@ -33,8 +33,6 @@ class CareTakingApp(App):
     def load(self):
         self.load_kv('caretaking.kv')
 
-
-
     def create_log(self):
         self.patient_id = self.root.ids.observation.ids.patient_spinner.text
         self.location = self.root.ids.observation.ids.location_type_spinner.text
