@@ -58,6 +58,7 @@ class CareTakingApp(App):
         self.temp = self.root.ids.observation.ids.temp.text
         self.weight = self.root.ids.observation.ids.weight.text
         self.missing_field = 'You are missing one or many fields'
+        self.user_id = '10002T'
 
         if self.patient_id == '':
             self.error = self.missing_field
@@ -79,6 +80,8 @@ class CareTakingApp(App):
             self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
+
+        self.get_data()
 
     def main_menu(self):
         self.root.transition.direction = 'left'
@@ -133,6 +136,11 @@ class CareTakingApp(App):
             print('Can not create, multiple results found')
         except NoResultFound:
             print('No results found')
+
+    def get_data(self):
+        patients = self.session.query(Patient).filter(Patient.user_id == self.user_id).all()
+        print(patients)
+        pass
 
 
 
