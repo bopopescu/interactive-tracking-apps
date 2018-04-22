@@ -90,11 +90,12 @@ class CareTakingApp(App):
 
     def login_in(self):
         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
-        self.account_verification = self.root.ids.login.ids.
+        self.account_verification = self.root.ids.login.ids.account_verification.text
         if self.root.ids.login.ids.accounts.text == "Select your account":
-
-        self.root.transition.direction = 'left'
-        self.root.current = 'observation'
+            self.account_verification = 'You must select an account to login or create an account'
+        else:
+            self.root.transition.direction = 'left'
+            self.root.current = 'observation'
 
     def create_account(self):
         self.root.transition.direction = 'left'
@@ -142,11 +143,13 @@ class CareTakingApp(App):
             print('No results found')
 
     def get_data(self):
+        jon = self.session.query(Patient).filter(Patient.name == 'Jon Smith').one()
+        jon.user_id = '10001V'
+        self.session.add(jon)
+        self.session.commit()
         patients = self.session.query(Patient).filter(Patient.user_id == self.user_id).all()
         print(patients)
         pass
-
-
 
 
 
