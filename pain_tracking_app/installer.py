@@ -1,6 +1,6 @@
 from sys import stderr
 from sqlalchemy.exc import SQLAlchemyError
-from pain_tracking_app.tables import MedicationEntry, MedicationEntryDosage, PainEntryLocation, PainLocation, PainMedicationDatabase, \
+from tables import MedicationEntry, MedicationEntryDosage, PainEntryLocation, PainLocation, PainMedicationDatabase, \
     Medicine, PainEntry
 
 
