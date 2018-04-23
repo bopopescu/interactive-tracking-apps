@@ -15,9 +15,13 @@ from input_screen import ObservationEntry
 from create_account import CreateAccount
 # noinspection PyUnresolvedReferences
 from caretaking_review_screen import ReviewScreen
+# noinspection PyUnresolvedReferences
+from kivy.storage.jsonstore import JsonStore
 
 
 class CareTakingApp(App):
+
+    store = JsonStore('users.json')
     location = StringProperty('location type')
     activity = StringProperty('activity')
     appetite = StringProperty('appetite')
@@ -59,6 +63,7 @@ class CareTakingApp(App):
         self.temp = self.root.ids.observation.ids.temp.text
         self.weight = self.root.ids.observation.ids.weight.text
         self.missing_field = 'You are missing one or many fields'
+        self.user_id = '10002T'
 
         if self.patient_id == '':
             self.error = self.missing_field
@@ -81,16 +86,18 @@ class CareTakingApp(App):
             self.root.transition.direction = 'left'
             self.root.current = 'review'
 
+        self.get_data()
+
     def main_menu(self):
         self.root.transition.direction = 'left'
         self.root.current = 'login'
 
     def login_in(self):
-        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
-        self.account_verification = self.root.ids.login.ids.account_verification.text
-        if self.root.ids.login.ids.accounts.text == "Select your account":
-            self.account_verification = 'You must select an account to login or create an account'
-        else:
+         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+         self.account_verification = self.root.ids.login.ids.account_verification.text
+         if self.root.ids.login.ids.accounts.text == "Select your account":
+             self.account_verification = 'You must select an account to login or create an account'
+         else:
             self.root.transition.direction = 'left'
             self.root.current = 'observation'
 
@@ -138,6 +145,43 @@ class CareTakingApp(App):
             print('Can not create, multiple results found')
         except NoResultFound:
             print('No results found')
+
+    def get_data(self):
+        jon = self.session.query(Patient).filter(Patient.name == 'Jon Smith').one()
+        jon.user_id = '10001V'
+        self.session.add(jon)
+        self.session.commit()
+        patients = self.session.query(Patient).filter(Patient.user_id == self.user_id).all()
+        print(patients)
+
+    def _load_state(self):
+        try:
+            users = []
+            self.root.ids.login.ids.accounts.values = list(self.store.keys())
+            # for user in keys:
+            #     users.append(self.store.get(user))
+            # print(users)
+            print(list(self.store.keys()))
+        except KeyError:
+            pass
+
+    def _save_state(self):
+        #self.store[str(self.account_patient_id)] = {'username': self.username}
+        self.store.put(str(self.account_patient_id), given_name = self.account_given_name)
+
+    def on_start(self):
+        self._load_state()
+
+    def on_pause(self):
+        self._save_state()
+        return True
+
+    def on_stop(self):
+        self._save_state()
+
+
+
+
 
 
 

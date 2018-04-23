@@ -84,14 +84,15 @@ class User(Persisted):
     __tablename__ = 'users'
     user_id = Column(String(256), primary_key=True)
     surname = Column(String(256), nullable=False)
-    #TODO make given_name nullable.
-    given_name = Column(String(256))
+    given_name = Column(String(256), nullable=False)
     patient = relationship('Patient', back_populates='user')
 
 
 class Patient(Persisted):
     __tablename__ = 'patients'
     patient_id = Column(Integer, primary_key=True)
+    name = Column(String(256), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.user_id'))
     name = Column(String(256))
     user_id = Column(String(256), ForeignKey('users.user_id'))
     user = relationship('User', back_populates='patient')

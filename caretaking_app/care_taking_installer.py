@@ -2,19 +2,18 @@ from __future__ import print_function
 
 
 from sqlalchemy.exc import SQLAlchemyError
-from caretaking import CareTakingDatabase, Patient, CareLog, Observation, User
+from caretaking import CareTakingDatabase, Patient, CareLog, Observation
 from datetime import datetime
 
 
 def add_starter_data(session):
-    charles = User(user_id='10002T')
-    jon_smith = Patient(name='Jon Smith', user_id='10002T')
-    session.add(charles)
+    jon_smith = Patient(name='Jon Smith')
+
 
     session.add(jon_smith)
-    robert_kennedy = Patient(name='Robert Kennedy', user_id='10002T')
+    robert_kennedy = Patient(name='Robert Kennedy')
     session.add(robert_kennedy)
-    george_washington=Patient(name='George Washington', user_id='10001V')
+    george_washington=Patient(name='George Washington')
     session.add(george_washington)
 
     care_log = CareLog()
