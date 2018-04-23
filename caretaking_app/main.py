@@ -3,11 +3,9 @@ from kivy.properties import StringProperty
 from kivy.uix.label import Label
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
-
 # noinspection PyUnresolvedReferences
 from sqlalchemy.orm.exc import MultipleResultsFound, NoResultFound
 from sqlalchemy.sql.functions import user
-
 from database import Patient, User, Observation, CombinedDatabase
 from login_screen import LoginScreen
 # noinspection PyUnresolvedReferences
@@ -188,19 +186,8 @@ class CareTakingApp(App):
         # for user in user_list:
         #     patient_list.append(self.session.query(Patient).filter(Patient.user_id == user).all())
 
-        for observation in self.session.query(Observation).all():
+        for observation in self.session.query(Observation).order_by(Observation.date_time).all():
             container.add_widget(Label(text = observation.city))
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -211,3 +198,4 @@ if __name__ == '__main__':
         print('Initial database connection failed!', file=stderr)
         print('Cause: {exception}'.format(exception=exception), file=stderr)
         exit(1)
+
