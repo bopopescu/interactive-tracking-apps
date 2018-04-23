@@ -8,24 +8,25 @@ from database import CareLog, Observation, PainLocation, Medicine, CombinedDatab
 
 
 def add_starter_data(session):
-    jon_smith = Patient(name='Jon Smith', user_id='10001V')
+    jon_smith = User(given_name='Jon', surname='Smith')
     session.add(jon_smith)
-    robert_kennedy = Patient(name='Robert Kennedy', user_id='10001V')
-    session.add(robert_kennedy)
-    george_washington=Patient(name='George Washington', user_id='10002T')
-    session.add(george_washington)
-    ada_lovelace = User(given_name='Ada', surname='Lovelace', user_id='10001V')
+    ada_lovelace = User(given_name='Ada', surname='Lovelace')
     session.add(ada_lovelace)
-    charles_babbage = User(given_name='Charles', surname='Babbage', user_id='10002T')
+    charles_babbage = User(given_name='Charles', surname='Babbage')
     session.add(charles_babbage)
 
+
     care_log = CareLog()
-    jon_obs = Observation(patient= jon_smith, log=care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
-    session.add(jon_obs)
+    ada = Patient(open_mrs_id='10001V', name='Ada Lovelace',  user_id=2)
+    session.add(ada)
+    obs1 = Observation(patient=ada, log=care_log, location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
+    session.add(obs1)
 
     care_log1 = CareLog()
-    robert = Observation(patient= robert_kennedy, log=care_log1, location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
-    session.add(robert)
+    charles = Patient(open_mrs_id='10002T', name='Charles Babbage', user_id=3)
+    session.add(charles)
+    obs2 = Observation(patient=charles, log=care_log1, location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
+    session.add(obs2)
 
     arm_location = PainLocation(body_location='Arm')
     leg_location = PainLocation(body_location='Leg')

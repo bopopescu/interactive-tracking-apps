@@ -15,9 +15,9 @@ class MyTestCase(TestCase):
         pain_entry_database = CombinedDatabase(url)
         pain_entry_database.ensure_tables_exist()
         session = pain_entry_database.create_session()
-
+        location_list = ['Arm']
         pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
-        MultipleScreenApp._pain_entry_severity(session, pain_entry, arm, 6)
+        MultipleScreenApp._pain_entry_severity(session, pain_entry, location_list[0], 6)
         actual = session.query(PainEntryLocation).filter(PainEntryLocation.pain_location == 'Arm').one()
         self.assertEqual(actual.pain_entry, pain_entry)
         self.assertEqual(actual.severity, 6)
