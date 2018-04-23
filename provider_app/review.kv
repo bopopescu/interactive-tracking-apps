@@ -3,30 +3,12 @@
         orientation: 'vertical'
         Label:
             text: 'Patient Observation(s)'
+        Label:
+            text: 'Database Entries'
+            size_hint:(.5, .5)
+            pos_hint: {'center_x': .5, 'center_y': .5}
         BoxLayout:
-            orientation: 'horizontal'
-            id: data
-            BoxLayout:
-                orientation: 'vertical'
-                id: visit_times
-                Label:
-                    text: 'Visit times:'
-                    size_hint:(.5, .5)
-                    pos_hint: {'center_x': .5, 'center_y': .5}
-            BoxLayout:
-                orientation: 'vertical'
-                id: database_entries
-                Label:
-                    text: 'App Entries'
-                    size_hint:(.5, .5)
-                    pos_hint: {'center_x': .5, 'center_y': .5}
-            BoxLayout:
-                orientation: 'vertical'
-                id: visit_encounters
-                Label:
-                    text: 'Encounters during the visit'
-                    size_hint:(.5, .5)
-                    pos_hint: {'center_x': .5, 'center_y': .5}
+            id: database_entries
         BoxLayout:
             Button:
                 text: 'Back'

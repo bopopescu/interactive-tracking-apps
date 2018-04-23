@@ -69,7 +69,7 @@ class ProviderApp(App):
     def load_openmrs_data(self, openmrs_id):
         self.root.transition.direction = 'left'
         self.root.current = 'review'
-        self.root.ids.review.ids.data.clear_widgets()
+        self.root.ids.review.ids.database_entries.clear_widgets()
         patient = self.session.query(Patient).filter(Patient.open_mrs_id == openmrs_id).one()
         self.load_database_data(patient.patient_id)
         self.openmrs_connection.send_request('patient', None, self.on_openmrs_data_loaded,
@@ -84,10 +84,11 @@ class ProviderApp(App):
 
     def on_visit_data_loaded(self, _, response):
         #print(dumps(response, indent=4, sort_keys=True))
-        visit_times = self.root.ids.review.ids.visit_times
-        encounters = self.root.ids.review.ids.visit_encounters
+        # visit_times = self.root.ids.review.ids.visit_times
+        # encounters = self.root.ids.review.ids.visit_encounters
         # for result in response['results']:
         #     visit_times.add_widget(Label(text='{encounterDatetime}'.format(encounterDatetime=result['encounterDatetime'])))
+        pass
 
     def load_database_data(self, patient_id):
         observation = self.session.query(Observation).filter(Observation.patient_id == patient_id).one()
