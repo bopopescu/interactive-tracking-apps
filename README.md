@@ -20,5 +20,5 @@ Know issues with the pain tracking App:  It is the same issue with creating acco
 
 
 
-Know issues with the Provider App:  
+Know issues with the Provider App:
 

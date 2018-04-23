@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.properties import StringProperty
+from kivy.uix.label import Label
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 
@@ -82,6 +83,7 @@ class CareTakingApp(App):
         if self.weight == '':
             self.error = self.missing_field
         else:
+            self.review_screen()
             self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
@@ -158,15 +160,12 @@ class CareTakingApp(App):
         try:
             users = []
             self.root.ids.login.ids.accounts.values = list(self.store.keys())
-            # for user in keys:
-            #     users.append(self.store.get(user))
-            # print(users)
+
             print(list(self.store.keys()))
         except KeyError:
             pass
 
     def _save_state(self):
-        #self.store[str(self.account_patient_id)] = {'username': self.username}
         self.store.put(str(self.account_patient_id), given_name = self.account_given_name)
 
     def on_start(self):
@@ -178,6 +177,21 @@ class CareTakingApp(App):
 
     def on_stop(self):
         self._save_state()
+
+    def review_screen(self):
+        container = self.root.ids.review.ids.patient_records
+
+        #user_list = list(self.store.keys())
+        #patient_list = []
+        # for user in user_list:
+        #     patient_list.append(self.session.query(Patient).filter(Patient.user_id == user).all())
+
+        for observation in self.session.query(Observation).all():
+            container.add_widget(Label(text = observation.city))
+
+
+
+
 
 
 
