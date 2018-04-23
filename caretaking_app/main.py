@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.properties import StringProperty
+from kivy.uix.label import Label
 from sqlalchemy.exc import SQLAlchemyError
 from sys import stderr
 
@@ -82,6 +83,7 @@ class CareTakingApp(App):
         if self.weight == '':
             self.error = self.missing_field
         else:
+            self.review_screen()
             self.error = 'Log Completed'
             self.root.transition.direction = 'left'
             self.root.current = 'review'
@@ -93,11 +95,19 @@ class CareTakingApp(App):
         self.root.current = 'login'
 
     def login_in(self):
+<<<<<<< HEAD
+        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+        self.account_verification = self.root.ids.login.ids.account_verification.text
+        if self.root.ids.login.ids.accounts.text == "Select your account":
+            self.account_verification = 'You must select an account to login or create an account'
+        else:
+=======
          self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
          self.account_verification = self.root.ids.login.ids.account_verification.text
          if self.root.ids.login.ids.accounts.text == "Select your account":
              self.account_verification = 'You must select an account to login or create an account'
          else:
+>>>>>>> 7e92bbc8e9a4f681500d4562ca626fab450f3a90
             self.root.transition.direction = 'left'
             self.root.current = 'observation'
 
@@ -152,21 +162,17 @@ class CareTakingApp(App):
         self.session.add(jon)
         self.session.commit()
         patients = self.session.query(Patient).filter(Patient.user_id == self.user_id).all()
-        print(patients)
 
     def _load_state(self):
         try:
             users = []
             self.root.ids.login.ids.accounts.values = list(self.store.keys())
-            # for user in keys:
-            #     users.append(self.store.get(user))
-            # print(users)
+
             print(list(self.store.keys()))
         except KeyError:
             pass
 
     def _save_state(self):
-        #self.store[str(self.account_patient_id)] = {'username': self.username}
         self.store.put(str(self.account_patient_id), given_name = self.account_given_name)
 
     def on_start(self):
@@ -178,6 +184,21 @@ class CareTakingApp(App):
 
     def on_stop(self):
         self._save_state()
+
+    def review_screen(self):
+        container = self.root.ids.review.ids.patient_records
+
+        #user_list = list(self.store.keys())
+        #patient_list = []
+        # for user in user_list:
+        #     patient_list.append(self.session.query(Patient).filter(Patient.user_id == user).all())
+
+        for observation in self.session.query(Observation).all():
+            container.add_widget(Label(text = observation.city))
+
+
+
+
 
 
 

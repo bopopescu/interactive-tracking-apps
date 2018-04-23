@@ -1,30 +1,21 @@
 from unittest import TestCase
 # noinspection PyUnresolvedReferences
-from pain_tracking_app.main import MultipleScreenApp
+from main import MultipleScreenApp
 # noinspection PyUnresolvedReferences
-from pain_tracking_app.tables import PainMedicationDatabase
+from database import CombinedDatabase, PainLocation, PainEntryLocation, Patient, PainEntry
 # noinspection PyUnresolvedReferences
 from datetime import datetime
 # noinspection PyUnresolvedReferences
-from installer.database import PainEntry, PainLocation, PainEntryLocation, Medicine, MedicationEntry, MedicationEntryDosage
 
 
 class MyTestCase(TestCase):
-    def test_open_medication_entry_screen(self):
-        screen = self.root.current = 'first'
-        MultipleScreenApp.open_medication_entry_screen(screen)
-        self.assertEqual(self.root.current, 'third')
 
     def test_insert_pain(self):
-        url = PainMedicationDatabase.construct_in_memory_url()
-        pain_entry_database = PainMedicationDatabase(url)
+        url = CombinedDatabase.construct_in_memory_url()
+        pain_entry_database = CombinedDatabase(url)
         pain_entry_database.ensure_tables_exist()
         session = pain_entry_database.create_session()
-        arm = session.query(PainLocation).filter(PainLocation.body_location == 'Arm').count()
-        location_list = []
-        location_list.append(arm)
-        severity_list = []
-        severity_list.append(6)
+
         pain_entry = PainEntry(time_stamp=datetime.now(), locations=location_list)
         MultipleScreenApp._pain_entry_severity(session, pain_entry, arm, 6)
         actual = session.query(PainEntryLocation).filter(PainEntryLocation.pain_location == 'Arm').one()
@@ -73,9 +64,3 @@ class MyTestCase(TestCase):
         dosage_list = []
         dosage_list.append(20)
         MultipleScreenApp._medication_entry_dosage(session, '', acetyl, 20)
-
-
-
-
-if __name__ == '__main__':
-    TestCase.main()
