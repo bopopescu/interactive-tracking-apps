@@ -1,9 +1,8 @@
 import unittest
 from datetime import datetime
+
 # noinspection PyUnresolvedReferences
-from caretaking_app import main
-# noinspection PyUnresolvedReferences
-from caretaking_app.caretaking import CareTakingDatabase
+from caretaking import CareTakingDatabase
 # noinspection PyUnresolvedReferences
 from caretaking import CareTakingDatabase, Patient, CareLog, Observation
 
@@ -20,7 +19,8 @@ class MyTestCase(unittest.TestCase):
         jimmy_fallon = Patient(name='Jimmy Fallon')
         care_log = CareLog()
         jimmy_obs = Observation(patient= jimmy_fallon,log = care_log,location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birthdate='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018,4,12,20,11,12,13))
-
+        actual = session.query(Patient).filter(Patient.name=='Jimmy Fallon').count()
+        self.assertEqual(actual.weight, 120)
 
 
 if __name__ == '__main__':

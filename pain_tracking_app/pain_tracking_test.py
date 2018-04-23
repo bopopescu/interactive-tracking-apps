@@ -8,6 +8,7 @@ from datetime import datetime
 # noinspection PyUnresolvedReferences
 
 
+
 class MyTestCase(TestCase):
 
     def test_insert_pain(self):
@@ -23,8 +24,8 @@ class MyTestCase(TestCase):
         self.assertEqual(actual.severity, 6)
 
     def test_insert_null_pain(self):
-        url = PainMedicationDatabase.construct_in_memory_url()
-        pain_entry_database = PainMedicationDatabase(url)
+        url = CombinedDatabase.construct_in_memory_url()
+        pain_entry_database = CombinedDatabase(url)
         pain_entry_database.ensure_tables_exist()
         session = pain_entry_database.create_session()
         location_list = []
@@ -35,7 +36,7 @@ class MyTestCase(TestCase):
         self.assertEqual(actual.severity, '')
 
     def test_insert_multiple_pain(self):
-        url = PainMedicationDatabase.construct_in_memory_url()
+        url = CombinedDatabase.construct_in_memory_url()
         pain_entry_database = PainMedicationDatabase(url)
         pain_entry_database.ensure_tables_exist()
         session = pain_entry_database.create_session()
@@ -64,3 +65,4 @@ class MyTestCase(TestCase):
         dosage_list = []
         dosage_list.append(20)
         MultipleScreenApp._medication_entry_dosage(session, '', acetyl, 20)
+        actual = session.query()
