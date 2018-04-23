@@ -71,7 +71,8 @@ class ProviderApp(App):
         self.root.transition.direction = 'left'
         self.root.current = 'review'
         self.root.ids.review.ids.data.clear_widgets()
-        self.openmrs_connection.send_request('patient', None, self.on_openmrs_data_loaded,
+        self.load_database_data(user_id)
+        self.openmrs_connection.send_request('patientidentifier', None, self.on_openmrs_data_loaded,
                                              self.on_openmrs_data_not_loaded,
                                              self.on_openmrs_data_error, 'q={user_id}&v=full'.format(user_id=user_id))
 
@@ -89,6 +90,10 @@ class ProviderApp(App):
         encounters = self.root.ids.review.ids.visit_encounters
         # for result in response['results']:
         #     visit_times.add_widget(Label(text='{encounterDatetime}'.format(encounterDatetime=result['encounterDatetime'])))
+
+    def load_database_data(self, user_id):
+        users = self.session.query(User).filter(User.user_id == user_id).all()
+
 
 
     def on_openmrs_data_not_loaded(self, _, error):
