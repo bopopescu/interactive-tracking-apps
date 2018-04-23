@@ -93,7 +93,6 @@ class CareTakingApp(App):
         self.root.current = 'login'
 
     def login_in(self):
-
         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
         self.account_verification = self.root.ids.login.ids.account_verification.text
         if self.root.ids.login.ids.accounts.text == "Select your account":
@@ -102,6 +101,8 @@ class CareTakingApp(App):
 
          self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
          self.account_verification = self.root.ids.login.ids.account_verification.text
+         self.root.transition.direction ='left'
+         self.root.current= 'observation'
 
 
     def create_account(self):
