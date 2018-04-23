@@ -4,16 +4,22 @@
         Label:
             text: 'Patient Observation(s)'
         BoxLayout:
-            Label:
-                text: 'Visit times:'
-            Label:
-                text: 'App Entries'
-            Label:
-                text: 'Patient-provider encounters during the visit'
-        ScrollView:
+            id: data
             BoxLayout:
                 orientation: 'vertical'
-                id: patients
+                id: visit_times
+                Label:
+                    text: 'Visit times:'
+            BoxLayout:
+                orientation: 'vertical'
+                id: database_entries
+                Label:
+                    text: 'App Entries'
+            BoxLayout:
+                orientation: 'vertical'
+                id: visit_encounters
+                Label:
+                    text: 'Patient-provider encounters during the visit'
         BoxLayout:
             Button:
                 text: 'Back'
