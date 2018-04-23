@@ -13,12 +13,12 @@ Running the Installer:  To run the installer, open the project in Pycharm, in th
 
 
 Know issues with the caretaking App: When entering a date of birth, in the observation window it will currently allow the user to enter any string, rather that the format “XX/XX/XX”.   Also, when a user creates an account and goes back to the account selection screen that account is not shown on the dropdown.  On the other hand, when you exit the app and restart it that account is then shown.
+                                    Also the review screen does not work after a user hits submit in the observation entry screen.
+
+
+Know issues with the pain tracking App:  It is the same issue with creating account and review screen as the caretaking App.
 
 
 
-Know issues with the pain tracking App:  It is the same issue with creating account as the caretaking App.
-
-
-
-Know issues with the Provider App:
+Know issues with the Provider App: The provider app currently only pulls data from the caretaking app, and does not retrieve data from pain tracking or OpenMRS. 
 
