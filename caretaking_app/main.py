@@ -177,12 +177,6 @@ class CareTakingApp(App):
 
     def review_screen(self):
         container = self.root.ids.review.ids.patient_records
-
-        #user_list = list(self.store.keys())
-        #patient_list = []
-        # for user in user_list:
-        #     patient_list.append(self.session.query(Patient).filter(Patient.user_id == user).all())
-
         for observation in self.session.query(Observation).order_by('date_time').all():
             container.add_widget(Label(text = observation.city))
 
