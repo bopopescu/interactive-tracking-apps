@@ -100,8 +100,11 @@ class CareTakingApp(App):
         if self.root.ids.login.ids.accounts.text == "Select your account":
             self.account_verification = 'You must select an account to login or create an account'
         else:
-            self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
-            self.account_verification = self.root.ids.login.ids.account_verification.text
+         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+         self.account_verification = self.root.ids.login.ids.account_verification.text
+         self.root.transition.direction ='left'
+         self.root.current= 'observation'
+
 
     def create_account(self):
         self.root.transition.direction = 'left'
