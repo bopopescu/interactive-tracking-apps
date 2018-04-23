@@ -27,14 +27,6 @@ def add_starter_data(session):
     robert = Observation(patient= robert_kennedy, log=care_log1, location='Patient Home', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
     session.add(robert)
 
-    # care_log2 = CareLog()
-    # ada = Observation(patient=ada_lovelace, log=care_log2, location='Patient Home', activity='3-Sometimes Active', appetite='4-Healthy', birth_date='12/10/1915', city='Omaha', weight='99', temperature='97', date_time=datetime(2016, 11, 22, 13, 10, 12, 12))
-    # session.add(ada)
-    #
-    # care_log3 = CareLog()
-    # charles = Observation(patient=charles_babbage, log=care_log3, location='Hospital', activity='5-Very Active', appetite = '5-Very Healthy', birth_date='05/04/1998', city ='Omaha', weight='120', temperature='50', date_time=datetime(2018, 4, 12, 20, 11, 12, 13))
-    # session.add(charles)
-
     arm_location = PainLocation(body_location='Arm')
     leg_location = PainLocation(body_location='Leg')
     head_location = PainLocation(body_location='Head')
