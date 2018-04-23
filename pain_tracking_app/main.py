@@ -36,6 +36,7 @@ class MultipleScreenApp(App):
         self.root.transition.direction = 'left'
         self.root.current = 'first'
 
+
     def create_account(self):
         self.root.transition.direction = 'left'
         self.root.current = 'create_account'
