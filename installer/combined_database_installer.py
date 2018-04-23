@@ -16,7 +16,7 @@ def add_starter_data(session):
     session.add(george_washington)
     ada_lovelace = User(given_name='Ada', surname='Lovelace', user_id='10001V')
     session.add(ada_lovelace)
-    charles_babbage = User(given_name='Charles', surname='Babbage', user_id='10000X')
+    charles_babbage = User(given_name='Charles', surname='Babbage', user_id='10002T')
     session.add(charles_babbage)
 
     care_log = CareLog()
