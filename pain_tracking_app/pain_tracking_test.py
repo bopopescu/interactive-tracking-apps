@@ -1,3 +1,10 @@
+import sys
+try:
+    if sys.gettrace() is not None:
+        sys.path.append('/usr/lib64/python3.4/site-packages')
+except EnvironmentError:
+    pass
+
 from unittest import TestCase
 # noinspection PyUnresolvedReferences
 from main import MultipleScreenApp
@@ -37,7 +44,7 @@ class MyTestCase(TestCase):
 
     def test_insert_multiple_pain(self):
         url = CombinedDatabase.construct_in_memory_url()
-        pain_entry_database = PainMedicationDatabase(url)
+        pain_entry_database = CombinedDatabase(url)
         pain_entry_database.ensure_tables_exist()
         session = pain_entry_database.create_session()
         arm = session.query(PainLocation).filter(PainLocation.body_location == 'Arm').count()
@@ -65,4 +72,5 @@ class MyTestCase(TestCase):
         dosage_list = []
         dosage_list.append(20)
         MultipleScreenApp._medication_entry_dosage(session, '', acetyl, 20)
-        actual = session.query()
+        actual = session.query(Medicine).filter(Medicine.medicine_type == 'Acetylsalicylic (mg)').count()
+        self.assertEqual(actual.dosage, 20)
