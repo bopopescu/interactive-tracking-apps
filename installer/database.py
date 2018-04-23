@@ -82,7 +82,7 @@ class MedicationEntryDosage(Persisted):
 
 class User(Persisted):
     __tablename__ = 'users'
-    user_id = Column(String(256), primary_key=True)
+    user_id = Column(Integer, primary_key=True)
     surname = Column(String(256), nullable=False)
     given_name = Column(String(256), nullable=False)
     patient = relationship('Patient', back_populates='user')

@@ -92,11 +92,11 @@ class CareTakingApp(App):
         self.root.current = 'login'
 
     def login_in(self):
-        # self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
-        # self.account_verification = self.root.ids.login.ids.account_verification.text
-        # if self.root.ids.login.ids.accounts.text == "Select your account":
-        #     self.account_verification = 'You must select an account to login or create an account'
-        # else:
+        self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+        self.account_verification = self.root.ids.login.ids.account_verification.text
+        if self.root.ids.login.ids.accounts.text == "Select your account":
+            self.account_verification = 'You must select an account to login or create an account'
+        else:
             self.root.transition.direction = 'left'
             self.root.current = 'observation'
 
@@ -151,7 +151,6 @@ class CareTakingApp(App):
         self.session.add(jon)
         self.session.commit()
         patients = self.session.query(Patient).filter(Patient.user_id == self.user_id).all()
-        print(patients)
 
     def _load_state(self):
         try:
