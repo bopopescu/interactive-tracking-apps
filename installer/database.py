@@ -83,10 +83,7 @@ class MedicationEntryDosage(Persisted):
 class User(Persisted):
     __tablename__ = 'users'
     user_id = Column(Integer, primary_key=True)
-<<<<<<< HEAD
-=======
-    Open_MRS_ID = Column(String(256))
->>>>>>> 7e92bbc8e9a4f681500d4562ca626fab450f3a90
+    open_mrs_ID = Column(String(256))
     surname = Column(String(256), nullable=False)
     given_name = Column(String(256), nullable=False)
     patient = relationship('Patient', back_populates='user')
@@ -98,7 +95,7 @@ class Patient(Persisted):
     name = Column(String(256), nullable=False)
     user_id = Column(Integer, ForeignKey('users.user_id'))
     name = Column(String(256))
-    user_id = Column(String(256), ForeignKey('users.user_id'))
+    open_mrs_id = Column(String(256), ForeignKey('users.user_id'))
     user = relationship('User', back_populates='patient')
     observations = relationship('Observation', uselist=True, back_populates='patient')
 

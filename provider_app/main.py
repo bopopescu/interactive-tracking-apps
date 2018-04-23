@@ -64,22 +64,20 @@ class ProviderApp(App):
         for x in range(len(users)):
             new_user = Button(text='{firstname} {lastname}'.format(firstname=users[x].given_name,
                                                                    lastname=users[x].surname),
-                              on_press=lambda y: self.load_openmrs_data(users[x].user_id))
+                              on_press=lambda y: self.load_openmrs_data(users[x].open_mrs_id))
             self.root.ids.select_patient.ids.patients.add_widget(new_user)
 
-    def load_openmrs_data(self, user_id):
+    def load_openmrs_data(self, openmrs_id):
         self.root.transition.direction = 'left'
         self.root.current = 'review'
         self.root.ids.review.ids.data.clear_widgets()
-        self.load_database_data(user_id)
-        self.openmrs_connection.send_request('patientidentifier', None, self.on_openmrs_data_loaded,
+        self.load_database_data(openmrs_id)
+        self.openmrs_connection.send_request('patient', None, self.on_openmrs_data_loaded,
                                              self.on_openmrs_data_not_loaded,
-                                             self.on_openmrs_data_error, 'q={user_id}&v=full'.format(user_id=user_id))
+                                             self.on_openmrs_data_error, 'q={user_id}&v=full'.format(user_id=openmrs_id))
 
     def on_openmrs_data_loaded(self, _, response):
-        print(dumps(response, indent=4, sort_keys=True))
         for result in response['results']:
-            print(result['uuid'])
             self.openmrs_connection.send_request('encounter', None, self.on_visit_data_loaded,
                                                  self.on_openmrs_data_not_loaded, self.on_openmrs_data_error,
                                                  'q={uuid}&v=full'.format(uuid=result['uuid']))
@@ -91,8 +89,8 @@ class ProviderApp(App):
         # for result in response['results']:
         #     visit_times.add_widget(Label(text='{encounterDatetime}'.format(encounterDatetime=result['encounterDatetime'])))
 
-    def load_database_data(self, user_id):
-        users = self.session.query(User).filter(User.user_id == user_id).all()
+    def load_database_data(self, openmrs_id):
+        users = self.session.query(User).filter(User.open_mrs_id == openmrs_id).all()
 
 
 
