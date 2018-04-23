@@ -4,25 +4,37 @@
         Label:
             text: 'Patient Observation(s)'
         BoxLayout:
+            orientation: 'horizontal'
             id: data
             BoxLayout:
                 orientation: 'vertical'
                 id: visit_times
                 Label:
                     text: 'Visit times:'
+                    size_hint:(.5, .5)
+                    pos_hint: {'center_x': .5, 'center_y': .5}
             BoxLayout:
                 orientation: 'vertical'
                 id: database_entries
                 Label:
                     text: 'App Entries'
+                    size_hint:(.5, .5)
+                    pos_hint: {'center_x': .5, 'center_y': .5}
             BoxLayout:
                 orientation: 'vertical'
                 id: visit_encounters
                 Label:
-                    text: 'Patient-provider encounters during the visit'
+                    text: 'Encounters during the visit'
+                    size_hint:(.5, .5)
+                    pos_hint: {'center_x': .5, 'center_y': .5}
         BoxLayout:
             Button:
                 text: 'Back'
                 size_hint: .25, .25
                 on_press: app.select_patient()
             Widget:
+
+# All labels are blue.
+<Label>:
+    color: (0, 0, 0.75, 1)
+    pos_hint: {'center_x': .5, 'center_y': .5}

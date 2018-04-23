@@ -8,7 +8,7 @@ from kivy.logger import Logger
 from openmrs import RESTConnection
 from json import dumps
 from database import CombinedDatabase, PainLocation, PainEntryLocation, PainEntry, Medicine, MedicationEntry, \
-    MedicationEntryDosage, Patient, User
+    MedicationEntryDosage, Patient, User, Observation
 
 # noinspection PyUnresolvedReferences
 from login import LoginScreen
@@ -60,18 +60,18 @@ class ProviderApp(App):
         Logger.error('RestApp: {error}'.format(error=error))
 
     def load_patients(self):
-        users = self.session.query(User).all()
-        for x in range(len(users)):
-            new_user = Button(text='{firstname} {lastname}'.format(firstname=users[x].given_name,
-                                                                   lastname=users[x].surname),
-                              on_press=lambda y: self.load_openmrs_data(users[x].open_mrs_id))
-            self.root.ids.select_patient.ids.patients.add_widget(new_user)
+        patients = self.session.query(Patient).all()
+        for x in range(len(patients)):
+            new_patient = Button(text='{name}'.format(name=patients[x].name),
+                                 on_press=lambda y: self.load_openmrs_data(patients[x].open_mrs_id))
+            self.root.ids.select_patient.ids.patients.add_widget(new_patient)
 
     def load_openmrs_data(self, openmrs_id):
         self.root.transition.direction = 'left'
         self.root.current = 'review'
         self.root.ids.review.ids.data.clear_widgets()
-        self.load_database_data(openmrs_id)
+        patient = self.session.query(Patient).filter(Patient.open_mrs_id == openmrs_id).one()
+        self.load_database_data(patient.patient_id)
         self.openmrs_connection.send_request('patient', None, self.on_openmrs_data_loaded,
                                              self.on_openmrs_data_not_loaded,
                                              self.on_openmrs_data_error, 'q={user_id}&v=full'.format(user_id=openmrs_id))
@@ -83,16 +83,25 @@ class ProviderApp(App):
                                                  'q={uuid}&v=full'.format(uuid=result['uuid']))
 
     def on_visit_data_loaded(self, _, response):
-        print(dumps(response, indent=4, sort_keys=True))
+        #print(dumps(response, indent=4, sort_keys=True))
         visit_times = self.root.ids.review.ids.visit_times
         encounters = self.root.ids.review.ids.visit_encounters
         # for result in response['results']:
         #     visit_times.add_widget(Label(text='{encounterDatetime}'.format(encounterDatetime=result['encounterDatetime'])))
 
-    def load_database_data(self, openmrs_id):
-        users = self.session.query(User).filter(User.open_mrs_id == openmrs_id).all()
-
-
+    def load_database_data(self, patient_id):
+        observation = self.session.query(Observation).filter(Observation.patient_id == patient_id).one()
+        location = observation.location
+        activity = observation.activity
+        appetite = observation.appetite
+        weight = observation.weight
+        temperature = observation.temperature
+        print(temperature)
+        self.root.ids.review.ids.database_entries.add_widget(Label(text='{location}'.format(location=location)))
+        self.root.ids.review.ids.database_entries.add_widget(Label(text='{activity}'.format(activity=activity)))
+        self.root.ids.review.ids.database_entries.add_widget(Label(text='{appetite}'.format(appetite=appetite)))
+        self.root.ids.review.ids.database_entries.add_widget(Label(text='{weight}'.format(weight=weight)))
+        self.root.ids.review.ids.database_entries.add_widget(Label(text='{temperature}'.format(temperature=temperature)))
 
     def on_openmrs_data_not_loaded(self, _, error):
         self.root.ids.select_patient.ids.failure_message.text = 'Failed to load patient data. Retest OpenMRS connection.'
