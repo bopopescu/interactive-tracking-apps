@@ -20,13 +20,8 @@ from kivy.storage.jsonstore import JsonStore
 
 
 class CareTakingApp(App):
-<<<<<<< HEAD
-    store = JsonStore('notes.json')
 
-
-=======
     store = JsonStore('users.json')
->>>>>>> 2b831da996f7c8090821d4cd802d306b26e2e956
     location = StringProperty('location type')
     activity = StringProperty('activity')
     appetite = StringProperty('appetite')
@@ -98,11 +93,11 @@ class CareTakingApp(App):
         self.root.current = 'login'
 
     def login_in(self):
-        # self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
-        # self.account_verification = self.root.ids.login.ids.account_verification.text
-        # if self.root.ids.login.ids.accounts.text == "Select your account":
-        #     self.account_verification = 'You must select an account to login or create an account'
-        # else:
+         self.username = ('{g} {p}'.format(g=self.root.ids.create_account.ids.given_name.text, p = self.root.ids.create_account.ids.patient_id.text))
+         self.account_verification = self.root.ids.login.ids.account_verification.text
+         if self.root.ids.login.ids.accounts.text == "Select your account":
+             self.account_verification = 'You must select an account to login or create an account'
+         else:
             self.root.transition.direction = 'left'
             self.root.current = 'observation'
 
@@ -183,31 +178,6 @@ class CareTakingApp(App):
 
     def on_stop(self):
         self._save_state()
-
-
-    def _load_state(self):
-
-        try:
-            for account in 'note':
-
-                self.root.ids.login.ids.accounts.value.append()
-                self.root.text = self.store['note']['text']
-        except KeyError:
-            pass
-
-    def _save_state(self):
-        self.store['note'] = {self.root.ids.create_account.ids.given_name.text: self.root.ids.create_account.ids.patient_id}
-
-    def on_start(self):
-        self._load_state()
-
-    def on_pause(self):
-        self._save_state()
-        return True
-
-    def on_stop(self):
-        self._save_state()
-
 
 
 
